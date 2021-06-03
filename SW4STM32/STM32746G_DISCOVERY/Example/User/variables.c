@@ -28,22 +28,11 @@ int largeur_bande;
 int hauteur_bande = 40; // hauteur de la bande
 
 // variables ecran tactile
-uint16_t x,y; // variables contenant la position du dernier touch sur l'ecran tactile
+int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int etatlumiere_R;
+int etatlumiere_V;
+int etatlumiere_B;
 
 
 
