@@ -11,7 +11,7 @@ int TEY;
 // variables ecran 3 bandes
 
 int marge_haut = 20;
-int marge_droite = 20;
+int marge_droite = 100;
 int marge_gauche = 20;
 
 

@@ -20,7 +20,8 @@ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/sdram.c \
 C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/sdram_dma.c \
 C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/stm32f7xx_it.c \
 ../Example/User/structures.c \
-C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/touchscreen.c 
+C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/touchscreen.c \
+../Example/User/variables.c 
 
 OBJS += \
 ./Example/User/audio_loopback.o \
@@ -38,7 +39,8 @@ OBJS += \
 ./Example/User/sdram_dma.o \
 ./Example/User/stm32f7xx_it.o \
 ./Example/User/structures.o \
-./Example/User/touchscreen.o 
+./Example/User/touchscreen.o \
+./Example/User/variables.o 
 
 C_DEPS += \
 ./Example/User/audio_loopback.d \
@@ -56,7 +58,8 @@ C_DEPS += \
 ./Example/User/sdram_dma.d \
 ./Example/User/stm32f7xx_it.d \
 ./Example/User/structures.d \
-./Example/User/touchscreen.d 
+./Example/User/touchscreen.d \
+./Example/User/variables.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -92,4 +95,6 @@ Example/User/structures.o: ../Example/User/structures.c Example/User/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F746xx -DUSE_STM32746G_DISCO -DUSE_IOEXPANDER -c -I../../../Inc -I../../../Drivers/CMSIS/Include -I../../../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../../../Drivers/STM32F7xx_HAL_Driver/Inc -I../../../Drivers/BSP/STM32746G-Discovery -I../../../Drivers/BSP/Components/Common -I../../../Utilities/Log -I../../../Utilities/Fonts -I../../../Utilities/CPU -Os -ffunction-sections -Wall -fstack-usage -MMD -MP -MF"Example/User/structures.d" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Example/User/touchscreen.o: C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/touchscreen.c Example/User/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F746xx -DUSE_STM32746G_DISCO -DUSE_IOEXPANDER -c -I../../../Inc -I../../../Drivers/CMSIS/Include -I../../../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../../../Drivers/STM32F7xx_HAL_Driver/Inc -I../../../Drivers/BSP/STM32746G-Discovery -I../../../Drivers/BSP/Components/Common -I../../../Utilities/Log -I../../../Utilities/Fonts -I../../../Utilities/CPU -Os -ffunction-sections -Wall -fstack-usage -MMD -MP -MF"Example/User/touchscreen.d" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Example/User/variables.o: ../Example/User/variables.c Example/User/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F746xx -DUSE_STM32746G_DISCO -DUSE_IOEXPANDER -c -I../../../Inc -I../../../Drivers/CMSIS/Include -I../../../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../../../Drivers/STM32F7xx_HAL_Driver/Inc -I../../../Drivers/BSP/STM32746G-Discovery -I../../../Drivers/BSP/Components/Common -I../../../Utilities/Log -I../../../Utilities/Fonts -I../../../Utilities/CPU -Os -ffunction-sections -Wall -fstack-usage -MMD -MP -MF"Example/User/variables.d" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 

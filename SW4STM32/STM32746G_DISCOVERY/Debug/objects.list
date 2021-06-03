@@ -57,4 +57,5 @@
 "Example/User/stm32f7xx_it.o"
 "Example/User/structures.o"
 "Example/User/touchscreen.o"
+"Example/User/variables.o"
 "Utilities/lcd_log.o"

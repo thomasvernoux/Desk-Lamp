@@ -1,26 +1,14 @@
 /**
   ******************************************************************************
   * @file    BSP/Src/main.c
-  * @author  MCD Application Team
-  * @brief   This example code shows how to use the STM32746G Discovery BSP Drivers
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
+  * @author  Thomas VERNOUX - Florian DEVIN
+  * @brief   Projet de Majeur - Electronique
   */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stlogo.h"
-#include "variables.c"
+#include "variables.h"
 #include "fonctions_gestion_ecran.h"
 #include "structures.h"
 

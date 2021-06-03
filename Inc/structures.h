@@ -7,6 +7,7 @@
  */
 typedef struct
 {
+	char Id;                             // contient la couleur
     int bordH;
     int bordB;
     int bordG;

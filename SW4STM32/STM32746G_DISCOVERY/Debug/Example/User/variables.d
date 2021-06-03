@@ -1,6 +1,5 @@
-Example/User/main.o: \
- C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/main.c \
- ../../../Inc/main.h \
+Example/User/variables.o: ../Example/User/variables.c \
+ ../../../Inc/variables.h ../../../Inc/main.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../../../Inc/stm32f7xx_hal_conf.h \
@@ -62,10 +61,9 @@ Example/User/main.o: \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/wm8994/wm8994.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/wm8994/../Common/audio.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h \
- ../../../Drivers/BSP/STM32746G-Discovery/../Components/n25q128a/n25q128a.h \
- ../../../Inc/stlogo.h ../../../Inc/variables.h ../../../Inc/main.h \
- ../../../Inc/fonctions_gestion_ecran.h ../../../Inc/variables.h \
- ../../../Inc/structures.h
+ ../../../Drivers/BSP/STM32746G-Discovery/../Components/n25q128a/n25q128a.h
+
+../../../Inc/variables.h:
 
 ../../../Inc/main.h:
 
@@ -192,15 +190,3 @@ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h:
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h:
 
 ../../../Drivers/BSP/STM32746G-Discovery/../Components/n25q128a/n25q128a.h:
-
-../../../Inc/stlogo.h:
-
-../../../Inc/variables.h:
-
-../../../Inc/main.h:
-
-../../../Inc/fonctions_gestion_ecran.h:
-
-../../../Inc/variables.h:
-
-../../../Inc/structures.h:

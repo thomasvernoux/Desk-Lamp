@@ -52,6 +52,10 @@ extern int pYbB;
 extern int hauteur_bande; // hauteur de la bande
 extern int largeur_bande;
 
+int curseur_jauge_rouge;
+int surseur_jauge_verte;
+int curseur_jauge_bleue;
+
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
@@ -145,13 +149,28 @@ void TouchScreenCallBack(){
  * @retval int
  */
 int TouchIn(FormeTypeDef forme){
+	int position_texte_X;
+	int position_texte_Y;
+
+	switch(forme.Id){
+		case 'R':
+			//position_texte_X = pXbR + largeur_bande + 10;
+			//position_texte_Y = PYbR;
+			break;
+
+	}
+
+
+
+
+
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 		char buffer[10];
 		itoa(x,buffer,10);
-		BSP_LCD_DisplayStringAt(100,100, (uint8_t *) buffer , LEFT_MODE);
+		BSP_LCD_DisplayStringAt(forme.bordD,forme.bordB, (uint8_t *) buffer , LEFT_MODE);
 	}// end if
 
 
