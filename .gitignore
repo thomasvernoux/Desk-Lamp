@@ -29,6 +29,7 @@
 *.m
 *.png
 
+*.xml
 
 # Vagrant directory
 .vagrant/
@@ -37,5 +38,5 @@
 !Makefile
 *~
 
-# Libraries
-/lib
+# Debug
+SW4STM32/STM32746G_DISCOVERY/Debug
