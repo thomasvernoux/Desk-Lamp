@@ -1,8 +1,0 @@
-camera.c:457:13:Camera_FrameBuffer_Init_TransferComplete	0	static
-camera.c:467:13:Camera_FrameBuffer_Init_TransferError	0	static
-camera.c:428:13:Camera_SetHint	8	static
-camera.c:523:13:ConvertCameraLineRgb565ToLcdLineARGB8888	32	static
-camera.c:115:6:Camera_demo	80	static
-camera.c:560:6:BSP_CAMERA_LineEventCallback	16	static
-camera.c:636:6:BSP_LCD_DMA2D_IRQHandler	0	static
-camera.c:649:6:HAL_DMA2D_MspInit	16	static
