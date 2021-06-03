@@ -15,6 +15,7 @@
 #include "tim.h"
 #include "PWM.h"
 #include "Lumiere.h"
+#include "my_math.h"
 #include <stdio.h>
 #include <stdlib.h>
 
