@@ -1,6 +1,6 @@
 Drivers/BSP/STM32746G_DISCOVERY/stm32746g_discovery_qspi.o: \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.c \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../../../Inc/stm32f7xx_hal_conf.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -43,9 +43,9 @@ Drivers/BSP/STM32746G_DISCOVERY/stm32746g_discovery_qspi.o: \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- c:\users\thoma\downloads\bsp-15428a16c978f9f26913fcaae80ce614fb78d6b8\bsp-15428a16c978f9f26913fcaae80ce614fb78d6b8\bsp\drivers\bsp\components\n25q128a\n25q128a.h
+ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\drivers\bsp\components\n25q128a\n25q128a.h
 
-C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h:
+C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h:
 
 ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 
@@ -131,4 +131,4 @@ C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a
 
 ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 
-c:\users\thoma\downloads\bsp-15428a16c978f9f26913fcaae80ce614fb78d6b8\bsp-15428a16c978f9f26913fcaae80ce614fb78d6b8\bsp\drivers\bsp\components\n25q128a\n25q128a.h:
+c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\drivers\bsp\components\n25q128a\n25q128a.h:

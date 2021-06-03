@@ -1,6 +1,6 @@
 Drivers/BSP/STM32746G_DISCOVERY/stm32746g_discovery.o: \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.c \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../../../Inc/stm32f7xx_hal_conf.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -44,7 +44,7 @@ Drivers/BSP/STM32746G_DISCOVERY/stm32746g_discovery.o: \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
 
-C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h:
+C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h:
 
 ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 

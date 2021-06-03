@@ -1,6 +1,6 @@
 Utilities/lcd_log.o: \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Utilities/Log/lcd_log.c \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Utilities/Log/lcd_log.h \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Utilities/Log/lcd_log.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Utilities/Log/lcd_log.h \
  ../../../Inc/lcd_log_conf.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/rk043fn48h/rk043fn48h.h \
@@ -48,9 +48,9 @@ Utilities/lcd_log.o: \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h \
- ../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h
+ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h
 
-C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Utilities/Log/lcd_log.h:
+C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Utilities/Log/lcd_log.h:
 
 ../../../Inc/lcd_log_conf.h:
 
@@ -146,4 +146,4 @@ C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a
 
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h:
 
-../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h:
+c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h:

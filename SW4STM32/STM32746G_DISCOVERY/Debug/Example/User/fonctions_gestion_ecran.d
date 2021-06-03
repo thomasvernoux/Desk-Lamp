@@ -51,7 +51,7 @@ Example/User/fonctions_gestion_ecran.o: \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/rk043fn48h/rk043fn48h.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h \
- ../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h \
+ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sd.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_eeprom.h \
@@ -170,7 +170,7 @@ Example/User/fonctions_gestion_ecran.o: \
 
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h:
 
-../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h:
+c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h:
 
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h:
 

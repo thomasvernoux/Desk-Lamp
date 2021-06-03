@@ -1,5 +1,5 @@
 Example/User/main.o: \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Src/main.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/main.c \
  ../../../Inc/main.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
@@ -51,7 +51,7 @@ Example/User/main.o: \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/rk043fn48h/rk043fn48h.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h \
- ../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h \
+ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sd.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_eeprom.h \
@@ -64,7 +64,7 @@ Example/User/main.o: \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/n25q128a/n25q128a.h \
  ../../../Inc/stlogo.h \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Src/variables.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/variables.c \
  ../../../Inc/variables.h ../../../Inc/main.h \
  ../../../Inc/fonctions_gestion_ecran.h ../../../Inc/variables.h \
  ../../../Inc/structures.h
@@ -171,7 +171,7 @@ Example/User/main.o: \
 
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h:
 
-../../../Drivers/BSP/STM32746G-Discovery/../../../Utilities/Fonts/fonts.h:
+c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h:
 
 ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.h:
 
@@ -197,7 +197,7 @@ Example/User/main.o: \
 
 ../../../Inc/stlogo.h:
 
-C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Src/variables.c:
+C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Src/variables.c:
 
 ../../../Inc/variables.h:
 

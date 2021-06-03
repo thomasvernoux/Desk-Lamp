@@ -1,5 +1,5 @@
 Drivers/STM32F7xx_HAL_Driver/stm32f7xx_hal_cortex.o: \
- C:/Users/thoma/Downloads/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP-15428a16c978f9f26913fcaae80ce614fb78d6b8/BSP/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c \
+ C:/Users/thoma/STM32CubeIDE/workspace_1.6.1/BSP/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../../../Inc/stm32f7xx_hal_conf.h \
  ../../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
