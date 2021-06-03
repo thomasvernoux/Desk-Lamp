@@ -71,44 +71,23 @@ int main(void)
 {
   uint8_t  lcd_status = LCD_OK;
 
-  /* Enable the CPU Cache */
   CPU_CACHE_Enable();
-  
-  /* STM32F7xx HAL library initialization:
-       - Configure the Flash prefetch, instruction and Data caches
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
-       - Global MSP (MCU Support Package) initialization
-     */
   HAL_Init();
-  /* Configure the system clock to 200 Mhz */
   SystemClock_Config();
 
   BSP_LED_Init(LED1);
-
-  /* Configure the User Button in GPIO Mode */
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
-  /*##-1- Initialize the LCD #################################################*/
-  /* Initialize the LCD */
   lcd_status = BSP_LCD_Init();
   ASSERT(lcd_status != LCD_OK);
-
-  /* Initialize the LCD Layers */
   BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FRAME_BUFFER);
 
   Display_DemoDescription();
 
-  /* Wait For User inputs */
-
-
+//TODO
   set_variables();
   afficher_bandes_couleurs();
-  //Touchscreen_demo();
-  // coucou
-
-
-
+ 
 
   while (1)
   {
@@ -200,27 +179,6 @@ static void Display_DemoDescription(void)
   BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
   BSP_LCD_Clear(LCD_COLOR_WHITE);
 
-  /* Set the LCD Text Color */
-  BSP_LCD_SetTextColor(LCD_COLOR_DARKBLUE);
-
-  /* Display LCD messages */
-  BSP_LCD_DisplayStringAt(0, 10, (uint8_t *)"STM32F746G BSP", CENTER_MODE);
-  BSP_LCD_DisplayStringAt(0, 35, (uint8_t *)"Drivers examples", CENTER_MODE);
-
-  /* Draw Bitmap */
-  BSP_LCD_DrawBitmap((BSP_LCD_GetXSize() - 80) / 2, 65, (uint8_t *)stlogo);
-
-  BSP_LCD_SetFont(&Font12);
-  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() - 20, (uint8_t *)"Copyright (c) STMicroelectronics 2015", CENTER_MODE);
-
-  BSP_LCD_SetFont(&Font16);
-  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
-  BSP_LCD_FillRect(0, BSP_LCD_GetYSize() / 2 + 15, BSP_LCD_GetXSize(), 60);
-  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-  BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 30, (uint8_t *)"Press User Button to start :", CENTER_MODE);
-  sprintf((char *)desc, "%s example", BSP_examples[DemoIndex].DemoName);
-  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 45, (uint8_t *)desc, CENTER_MODE);
 }
 
 /**
