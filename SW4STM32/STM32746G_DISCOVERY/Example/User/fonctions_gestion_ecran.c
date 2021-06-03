@@ -13,6 +13,7 @@
 
 
 
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define  CIRCLE_RADIUS        30
@@ -35,7 +36,7 @@ extern int TEY;
 
 extern int taille_ecran_X;
 extern int taille_ecran_Y;
-extern uint16_t x, y;
+extern int x, y;
 
 
 // ecran 3 bandes
@@ -55,6 +56,10 @@ extern int largeur_bande;
 int curseur_jauge_rouge;
 int surseur_jauge_verte;
 int curseur_jauge_bleue;
+
+extern int etatlumiere_R;
+extern int etatlumiere_V;
+extern int etatlumiere_B;
 
 
 /* Création des differents objets --------------------------------------------*/
@@ -99,10 +104,18 @@ void afficher_bandes_couleurs(){
 	// Bande Verte
 	BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
 	BSP_LCD_DrawRect(pXbV, pYbV,largeur_bande, hauteur_bande);
+	jauge_verte.bordH = pYbV;
+	jauge_verte.bordB = pYbV + hauteur_bande;
+	jauge_verte.bordG = pXbV;
+	jauge_verte.bordD = pXbV + largeur_bande;
 
 	// Bande Bleue
 	BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 	BSP_LCD_DrawRect(pXbB, pYbB,largeur_bande, hauteur_bande);
+	jauge_verte.bordH = pYbB;
+	jauge_verte.bordB = pYbB + hauteur_bande;
+	jauge_verte.bordG = pXbB;
+	jauge_verte.bordD = pXbB + largeur_bande;
 
 
 }
@@ -133,6 +146,8 @@ void TouchScreenCallBack(){
 	        y = TS_State.touchY[0];
 
 	        TouchIn(jauge_rouge);
+	        TouchIn(jauge_verte);
+	        TouchIn(jauge_bleu);
 
 
 
@@ -152,27 +167,27 @@ int TouchIn(FormeTypeDef forme){
 	int position_texte_X;
 	int position_texte_Y;
 
-	switch(forme.Id){
-		case 'R':
-			//position_texte_X = pXbR + largeur_bande + 10;
-			//position_texte_Y = PYbR;
-			break;
-
-	}
-
-
-
-
-
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+		BSP_LCD_SetFont(&Font24);
 		char buffer[10];
 		itoa(x,buffer,10);
-		BSP_LCD_DisplayStringAt(forme.bordD,forme.bordB, (uint8_t *) buffer , LEFT_MODE);
+		BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 	}// end if
 
+	switch(forme.Id){
+		case 'R':
+			etatlumiere_R = x;
+			break;
+		case 'V':
+			etatlumiere_V;
+			break;
+		case 'B':
+			etatlumiere_B;
+			break;
+	} // end switch
 
 
 
