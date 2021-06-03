@@ -119,24 +119,20 @@ void TouchScreenCallBack(){
 	status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
 
 
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-	char buffer[10];
-	itoa(TEY,buffer,10);
-	BSP_LCD_DisplayStringAt(100,100, (uint8_t *) buffer , LEFT_MODE);
+
 
 	if (status == TS_OK)
 	    {
 	      BSP_TS_GetState(&TS_State);
-	      if(TS_State.touchDetected)
-	      {
-
-	  		BSP_LCD_Clear(LCD_COLOR_WHITE);
-	  		HAL_Delay(1000);
-	  		afficher_bandes_couleurs();
-
+	      if(TS_State.touchDetected){
 	        x = TS_State.touchX[0];
 	        y = TS_State.touchY[0];
+
+	        TouchIn(jauge_rouge);
+
+
+
+
 	      } // end if
 	    } // end if
 
@@ -149,16 +145,19 @@ void TouchScreenCallBack(){
  * @retval int
  */
 int TouchIn(FormeTypeDef forme){
-	int a = 3;
-	switch(a){
-				case 5:
-					a = 19;
-					break;
+	int curseur = -1;
+	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
+		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+		char buffer[10];
+		itoa(x,buffer,10);
+		BSP_LCD_DisplayStringAt(100,100, (uint8_t *) buffer , LEFT_MODE);
+	}// end if
 
 
 
-	} // end switch
-	return a;
+
+	return curseur;
 
 }
 
