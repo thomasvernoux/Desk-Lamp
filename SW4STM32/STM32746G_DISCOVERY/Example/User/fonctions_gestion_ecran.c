@@ -9,7 +9,7 @@
 #include "main.h"
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
-#include "structures.h"
+
 
 
 
@@ -52,12 +52,16 @@ extern int pYbB;
 extern int hauteur_bande; // hauteur de la bande
 extern int largeur_bande;
 
+int curseur_jauge_rouge;
+int surseur_jauge_verte;
+int curseur_jauge_bleue;
+
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
-struct Forme jauge_rouge;
-struct Forme jauge_verte;
-struct Forme jauge_bleu;
+FormeTypeDef jauge_rouge;
+FormeTypeDef jauge_verte;
+FormeTypeDef jauge_bleu;
 
 
 
@@ -87,10 +91,10 @@ void afficher_bandes_couleurs(){
 	// Bande Rouge
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
 	BSP_LCD_DrawRect(pXbR, pYbR,largeur_bande, hauteur_bande);
-	jauge_rouge.CHG = pXbR;
-	jauge_rouge.CHD = pYbR;
-	jauge_rouge.CBG = pXbR;
-	jauge_rouge.CBD = pXbR;
+	jauge_rouge.bordH = pYbR;
+	jauge_rouge.bordB = pYbR + hauteur_bande;
+	jauge_rouge.bordG = pXbR;
+	jauge_rouge.bordD = pXbR + largeur_bande;
 
 	// Bande Verte
 	BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
@@ -119,35 +123,62 @@ void TouchScreenCallBack(){
 	status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
 
 
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-	char buffer[10];
-	itoa(TEY,buffer,10);
-	BSP_LCD_DisplayStringAt(100,100, (uint8_t *) buffer , LEFT_MODE);
+
 
 	if (status == TS_OK)
 	    {
 	      BSP_TS_GetState(&TS_State);
-	      if(TS_State.touchDetected)
-	      {
-
-	  		BSP_LCD_Clear(LCD_COLOR_WHITE);
-	  		HAL_Delay(1000);
-	  		afficher_bandes_couleurs();
-
+	      if(TS_State.touchDetected){
 	        x = TS_State.touchX[0];
 	        y = TS_State.touchY[0];
+
+	        TouchIn(jauge_rouge);
+
+
+
+
 	      } // end if
 	    } // end if
 
 } // end void
 
 
+/*
+ * @brief Cette fonction permet de savoir si on a appuyé dans une zone de controlle (carrés de couleurs)
+ * elle retourne un entier pour savoir a quee absysse on a touché.
+ * @retval int
+ */
+int TouchIn(FormeTypeDef forme){
+	int position_texte_X;
+	int position_texte_Y;
 
-////////////////// --------------------------------------------------------------------------------
+	switch(forme.Id){
+		case 'R':
+			//position_texte_X = pXbR + largeur_bande + 10;
+			//position_texte_Y = PYbR;
+			break;
+
+	}
 
 
 
+
+
+	int curseur = -1;
+	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
+		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+		char buffer[10];
+		itoa(x,buffer,10);
+		BSP_LCD_DisplayStringAt(forme.bordD,forme.bordB, (uint8_t *) buffer , LEFT_MODE);
+	}// end if
+
+
+
+
+	return curseur;
+
+}
 
 
 
