@@ -122,18 +122,8 @@ void afficher_bandes_couleurs(){
 
 void TouchScreenCallBack(){
 
-
-
 	uint8_t  status = 0;
-
-
-
-
-
 	status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
-
-
-
 
 	if (status == TS_OK)
 	    {
@@ -145,9 +135,6 @@ void TouchScreenCallBack(){
 	        TouchIn(jauge_rouge);
 	        TouchIn(jauge_verte);
 	        TouchIn(jauge_bleu);
-
-
-
 
 	      } // end if
 	    } // end if
@@ -162,9 +149,22 @@ void TouchScreenCallBack(){
  */
 int TouchIn(FormeTypeDef forme){
 
+	AED("G", forme.bordG, 1);
+	AED("D", forme.bordD, 2);
+	AED("H", forme.bordH, 3);
+	AED("B", forme.bordB, 4);
+
+	AED("x", x, 7);
+	AED("y", y, 8);
+
+	AED("if", (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB), 9);
 
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
+
+
+
+
 		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 		BSP_LCD_SetFont(&Font24);
@@ -188,6 +188,32 @@ int TouchIn(FormeTypeDef forme){
 
 
 	return curseur;
+
+}
+
+/*
+ * @brief Fonction qui permet d'afficher unr avriable a l'ecran pour le debug
+ */
+
+void AED(char label[10], int var, int place){
+	int absysse = 20;
+	for (int i = 0; i< place; i++){
+		absysse += 20;
+	}
+
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetFont(&Font16);
+	char buffer[10];
+	itoa(var,buffer,10);
+	BSP_LCD_DisplayStringAt(20,absysse, (uint8_t *) label , LEFT_MODE);
+	BSP_LCD_DisplayStringAt(100,absysse, (uint8_t *) buffer , LEFT_MODE);
+
+
+	return;
+
+
+
 
 }
 

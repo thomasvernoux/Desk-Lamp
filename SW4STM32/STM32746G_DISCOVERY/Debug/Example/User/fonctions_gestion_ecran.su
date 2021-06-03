@@ -1,3 +1,4 @@
 fonctions_gestion_ecran.c:81:6:afficher_bandes_couleurs	24	static
-fonctions_gestion_ecran.c:163:5:TouchIn	32	static
+fonctions_gestion_ecran.c:198:6:AED	40	static
+fonctions_gestion_ecran.c:150:5:TouchIn	48	static
 fonctions_gestion_ecran.c:123:6:TouchScreenCallBack	16	static
