@@ -9,7 +9,7 @@
 #include "main.h"
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
-#include "structures.h"
+
 
 
 
@@ -55,9 +55,9 @@ extern int largeur_bande;
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
-struct Forme jauge_rouge;
-struct Forme jauge_verte;
-struct Forme jauge_bleu;
+FormeTypeDef jauge_rouge;
+FormeTypeDef jauge_verte;
+FormeTypeDef jauge_bleu;
 
 
 
@@ -87,10 +87,10 @@ void afficher_bandes_couleurs(){
 	// Bande Rouge
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
 	BSP_LCD_DrawRect(pXbR, pYbR,largeur_bande, hauteur_bande);
-	jauge_rouge.CHG = pXbR;
-	jauge_rouge.CHD = pYbR;
-	jauge_rouge.CBG = pXbR;
-	jauge_rouge.CBD = pXbR;
+	jauge_rouge.bordH = pYbR;
+	jauge_rouge.bordB = pYbR + hauteur_bande;
+	jauge_rouge.bordG = pXbR;
+	jauge_rouge.bordD = pXbR + largeur_bande;
 
 	// Bande Verte
 	BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
@@ -143,11 +143,24 @@ void TouchScreenCallBack(){
 } // end void
 
 
+/*
+ * @brief Cette fonction permet de savoir si on a appuyé dans une zone de controlle (carrés de couleurs)
+ * elle retourne un entier pour savoir a quee absysse on a touché.
+ * @retval int
+ */
+int TouchIn(FormeTypeDef forme){
+	int a = 3;
+	switch(a){
+				case 5:
+					a = 19;
+					break;
 
-////////////////// --------------------------------------------------------------------------------
 
 
+	} // end switch
+	return a;
 
+}
 
 
 

@@ -63,8 +63,8 @@ Example/User/fonctions_gestion_ecran.o: \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/wm8994/../Common/audio.h \
  ../../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_qspi.h \
  ../../../Drivers/BSP/STM32746G-Discovery/../Components/n25q128a/n25q128a.h \
- ../../../Inc/variables.h ../../../Inc/main.h ../../../Inc/variables.h \
- ../../../Inc/structures.h
+ ../../../Inc/variables.h ../../../Inc/structures.h ../../../Inc/main.h \
+ ../../../Inc/variables.h
 
 ../../../Inc/fonctions_gestion_ecran.h:
 
@@ -196,8 +196,8 @@ c:\users\thoma\stm32cubeide\workspace_1.6.1\bsp\utilities\fonts\fonts.h:
 
 ../../../Inc/variables.h:
 
+../../../Inc/structures.h:
+
 ../../../Inc/main.h:
 
 ../../../Inc/variables.h:
-
-../../../Inc/structures.h:
