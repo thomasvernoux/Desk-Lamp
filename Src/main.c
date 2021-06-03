@@ -38,8 +38,9 @@ uint8_t NbLoop = 1;
 uint32_t    ErrorCounter = 0;
 #endif
 
-
-
+extern int etatLumiere_R;
+extern int etatLumiere_G;
+extern int etatLumiere_B;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -95,7 +96,7 @@ int main(void)
   while (1)
   {
 	  TouchScreenCallBack();
-    RGBW_Light_Callback(200,10000,35000,60000);
+    RGBW_Light_Callback(map(etatLumiere_R,0,1000,0,65535),map(etatLumiere_G,0,1000,0,65535),map(etatLumiere_B,0,1000,0,65535),60000);
 
 
 
