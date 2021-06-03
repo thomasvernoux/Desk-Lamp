@@ -880,7 +880,7 @@ __STATIC_FORCEINLINE void __DSB(void)
 }
 
 
-/**
+/**git push --set-upstream origin flo_branch1
   \brief   Data Memory Barrier
   \details Ensures the apparent order of the explicit memory operations before
            and after the instruction, without ensuring their completion.
