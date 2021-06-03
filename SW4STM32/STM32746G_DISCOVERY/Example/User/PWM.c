@@ -6,6 +6,7 @@
  */
 #include "main.h"
 #include "PWM.h"
+#include "tim.h"
 
 void MP_setPWM(TIM_HandleTypeDef *htim,int valeur_16b){
 	if (valeur_16b > 65535 && valeur_16b < 0)
