@@ -1,0 +1,4 @@
+audio_rec.c:65:6:AudioRec_demo	32	static
+audio_rec.c:198:6:BSP_AUDIO_IN_TransferComplete_CallBack	0	static
+audio_rec.c:209:6:BSP_AUDIO_IN_HalfTransfer_CallBack	0	static
+audio_rec.c:220:6:BSP_AUDIO_IN_Error_CallBack	8	static
