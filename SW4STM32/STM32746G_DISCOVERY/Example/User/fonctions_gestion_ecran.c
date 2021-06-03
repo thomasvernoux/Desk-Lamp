@@ -126,10 +126,7 @@ void TouchScreenCallBack(){
 
 	uint8_t  status = 0;
 
-	uint8_t  state = 0;
-	uint8_t  text[30];
-	uint8_t  radius;
-	uint8_t  radius_previous = 0;
+
 
 
 
@@ -164,8 +161,7 @@ void TouchScreenCallBack(){
  * @retval int
  */
 int TouchIn(FormeTypeDef forme){
-	int position_texte_X;
-	int position_texte_Y;
+
 
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
@@ -182,10 +178,10 @@ int TouchIn(FormeTypeDef forme){
 			etatlumiere_R = x;
 			break;
 		case 'V':
-			etatlumiere_V;
+			etatlumiere_V = x;
 			break;
 		case 'B':
-			etatlumiere_B;
+			etatlumiere_B = x;
 			break;
 	} // end switch
 
