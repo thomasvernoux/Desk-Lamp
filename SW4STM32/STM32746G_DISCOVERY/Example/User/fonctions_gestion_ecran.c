@@ -9,7 +9,8 @@
 #include "main.h"
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 
 
 
@@ -58,7 +59,7 @@ int surseur_jauge_verte;
 int curseur_jauge_bleue;
 
 extern int etatlumiere_R;
-extern int etatlumiere_V;
+extern int etatlumiere_G;
 extern int etatlumiere_B;
 
 
@@ -100,6 +101,7 @@ void afficher_bandes_couleurs(){
 	jauge_rouge.bordB = pYbR + hauteur_bande;
 	jauge_rouge.bordG = pXbR;
 	jauge_rouge.bordD = pXbR + largeur_bande;
+	jauge_rouge.Id = 'R';
 
 	// Bande Verte
 	BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
@@ -108,6 +110,7 @@ void afficher_bandes_couleurs(){
 	jauge_verte.bordB = pYbV + hauteur_bande;
 	jauge_verte.bordG = pXbV;
 	jauge_verte.bordD = pXbV + largeur_bande;
+	jauge_rouge.Id = 'V';
 
 	// Bande Bleue
 	BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
@@ -116,6 +119,7 @@ void afficher_bandes_couleurs(){
 	jauge_verte.bordB = pYbB + hauteur_bande;
 	jauge_verte.bordG = pXbB;
 	jauge_verte.bordD = pXbB + largeur_bande;
+	jauge_rouge.Id = 'B';
 
 
 }
@@ -148,7 +152,7 @@ void TouchScreenCallBack(){
  * @retval int
  */
 int TouchIn(FormeTypeDef forme){
-
+/*
 	AED("G", forme.bordG, 1);
 	AED("D", forme.bordD, 2);
 	AED("H", forme.bordH, 3);
@@ -158,7 +162,7 @@ int TouchIn(FormeTypeDef forme){
 	AED("y", y, 8);
 
 	AED("if", (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB), 9);
-
+*/
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 
@@ -178,14 +182,14 @@ int TouchIn(FormeTypeDef forme){
 			etatlumiere_R = x;
 			break;
 		case 'V':
-			etatlumiere_V = x;
+			etatlumiere_G = x;
 			break;
 		case 'B':
 			etatlumiere_B = x;
 			break;
 	} // end switch
 
-
+	 AED("eR",etatlumiere_R,2);
 
 	return curseur;
 

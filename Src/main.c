@@ -26,10 +26,9 @@ uint8_t NbLoop = 1;
 uint32_t    ErrorCounter = 0;
 #endif
 
-extern int etatLumiere_R;
-extern int etatLumiere_G;
-extern int etatLumiere_B;
-
+int etatlumiere_R;
+int etatlumiere_G;
+int etatlumiere_B;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void LCD_Init(uint8_t  lcd_status);
@@ -79,13 +78,13 @@ int main(void)
 
   set_variables();
   afficher_bandes_couleurs();
- 
+  R_Light_Callback(30000);
 
   while (1)
   {
 	  TouchScreenCallBack();
-    RGBW_Light_Callback(map(etatLumiere_R,0,1000,0,65535),map(etatLumiere_G,0,1000,0,65535),map(etatLumiere_B,0,1000,0,65535),60000);
-
+    RGBW_Light_Callback(map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535));
+    AED("eBmain",etatlumiere_B,1);
 
 
 
