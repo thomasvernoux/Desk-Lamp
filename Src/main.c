@@ -41,7 +41,7 @@ uint32_t    ErrorCounter = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-static void Display_DemoDescription(void);
+static void LCD_Init(uint8_t  lcd_status);
 static void CPU_CACHE_Enable(void);
 
 
@@ -78,11 +78,8 @@ int main(void)
   BSP_LED_Init(LED1);
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
-  lcd_status = BSP_LCD_Init();
-  ASSERT(lcd_status != LCD_OK);
-  BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FRAME_BUFFER);
 
-  Display_DemoDescription();
+  LCD_Init(lcd_status);
 
 //TODO
   set_variables();
@@ -166,15 +163,14 @@ static void SystemClock_Config(void)
   * @param  None
   * @retval None
   */
-static void Display_DemoDescription(void)
+static void LCD_Init(uint8_t  lcd_status)
 {
   uint8_t desc[50];
-
+  lcd_status = BSP_LCD_Init();
+  ASSERT(lcd_status != LCD_OK);
+  BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FRAME_BUFFER);
   /* Set LCD Foreground Layer  */
   BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER);
-
-  BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
-
   /* Clear the LCD */
   BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
   BSP_LCD_Clear(LCD_COLOR_WHITE);
