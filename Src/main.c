@@ -30,6 +30,8 @@ int etatlumiere_R;
 int etatlumiere_G;
 int etatlumiere_B;
 
+extern int largeur_bande;
+extern int hauteur_bande;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -79,7 +81,7 @@ int main(void)
 
 
 	TouchScreenCallBack();
-    RGBW_Light_Callback(map(etatlumiere_R,0,512,0,65535),map(etatlumiere_G,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(50,0,512,0,65535));
+    RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
 
   }

@@ -197,9 +197,9 @@ int TouchIn(FormeTypeDef forme){
 			BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 			BSP_LCD_SetFont(&Font24);
 			char buffer[10];
+			x = x - 18;
 			itoa(x,buffer,10);
 			BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-			x = x - 18;
 			Remplissage_jauge_Callback(forme, x);
 			switch(forme.Id){
 					case 'R':
