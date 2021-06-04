@@ -93,16 +93,6 @@ extern STATE_MachineTypeDef Etat_machine;
 void afficher_bandes_couleurs(){
 
 
-	BSP_LCD_Clear(LCD_COLOR_WHITE);
-	BSP_LCD_SetFont(&Font16);
-
-	// Titre
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Manuel" , LEFT_MODE);
-
-	afficher_changer_de_mode();
-
 
 	// Bande Rouge
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
@@ -304,6 +294,34 @@ void callback_changer_de_mode(){
 
 
 
+}
+
+/*
+ * @brief affiche a l'ecran mode manuel
+ */
+void Lancer_Mode_Manuel(){
+
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font16);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Manuel" , LEFT_MODE);
+
+
+	afficher_bandes_couleurs();
+	afficher_changer_de_mode();
+}
+
+/*
+ * @brief affiche a l'ecran mode manuel
+ */
+void Lancer_Mode_Automatique(){
+
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font16);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Automatique" , LEFT_MODE);
 }
 
 

@@ -64,6 +64,8 @@ int main(void)
   afficher_bandes_couleurs();
   R_Light_Callback(30000);
 
+  Lancer_Mode_Manuel();
+
 
   while (1)
   {
