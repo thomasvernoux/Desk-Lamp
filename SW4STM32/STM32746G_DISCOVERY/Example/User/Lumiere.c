@@ -36,7 +36,7 @@ void R_Light_Callback(const unsigned int Intensite){
 void G_Light_Callback(const unsigned int Intensite){ 
 	G_old_value = Intensite;
 	MP_setPWM(&htim12,TIM_CHANNEL_1,Intensite);
-}
+} 
 
 void B_Light_Callback(const unsigned int Intensite){
 	B_old_value = Intensite;

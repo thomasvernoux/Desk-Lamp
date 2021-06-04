@@ -113,16 +113,23 @@ void afficher_bandes_couleurs(){
 	jauge_verte.bordB = pYbV + hauteur_bande;
 	jauge_verte.bordG = pXbV;
 	jauge_verte.bordD = pXbV + largeur_bande;
-	jauge_rouge.Id = 'V';
+	jauge_verte.Id = 'V';
 
 	// Bande Bleue
 	BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 	BSP_LCD_DrawRect(pXbB, pYbB,largeur_bande, hauteur_bande);
-
 	jauge_bleu.bordH = pYbB;
 	jauge_bleu.bordB = pYbB + hauteur_bande;
 	jauge_bleu.bordG = pXbB;
 	jauge_bleu.bordD = pXbB + largeur_bande;
+	jauge_bleu
+
+
+
+
+
+
+	.Id = 'B';
 
 
 	// afficher les chiffres qui indiquent le remplissage des jauges
@@ -178,17 +185,13 @@ int TouchIn(FormeTypeDef forme){
 
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
-
-
-
-
 		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 		BSP_LCD_SetFont(&Font24);
 		char buffer[10];
 		itoa(x,buffer,10);
 		BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-	}// end if
+
 
 	switch(forme.Id){
 		case 'R':
@@ -200,6 +203,9 @@ int TouchIn(FormeTypeDef forme){
 		case 'B':
 			etatlumiere_B = x;
 			break;
+
+
+		}// end if
 	} // end switch
 
 
