@@ -133,7 +133,7 @@ void afficher_bandes_couleurs(){
 	itoa(etatlumiere_R,buffer,10);
 	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
-	itoa(etatlumiere_V,buffer,10);
+	itoa(etatlumiere_G,buffer,10);
 	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
 	itoa(etatlumiere_B,buffer,10);
@@ -199,7 +199,7 @@ int TouchIn(FormeTypeDef forme){
 			break;
 	} // end switch
 
-	 AED("eR",etatlumiere_R,2);
+
 
 	return curseur;
 

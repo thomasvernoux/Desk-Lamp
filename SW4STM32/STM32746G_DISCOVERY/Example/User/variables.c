@@ -72,7 +72,7 @@ void set_variables(){
 	pYbB = TEY/4 * 3 - hauteur_bande/2 + marge_haut;
 
 	etatlumiere_R = 50;
-	etatlumiere_V = 50;
+	etatlumiere_G = 50;
 	etatlumiere_B = 50;
 }
 

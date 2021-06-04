@@ -84,7 +84,7 @@ int main(void)
   {
 	  TouchScreenCallBack();
     RGBW_Light_Callback(map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535));
-    AED("eBmain",etatlumiere_B,1);
+
 
 
 
