@@ -33,8 +33,8 @@ int hauteur_bande = 40; // hauteur de la bande
 
 int BCM_pX = 250; // position X
 int BCM_pY = 20; // position Y
-int BCM_largeur = 100; // largeur
-int BCM_hauteur = 16; // hauteur
+int BCM_largeur = 200; // largeur
+int BCM_hauteur = 25; // hauteur
 
 
 // variables ecran tactile

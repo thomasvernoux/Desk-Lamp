@@ -170,9 +170,22 @@ void TouchScreenCallBack(){
 	        x = TS_State.touchX[0];
 	        y = TS_State.touchY[0];
 
-	        TouchIn(jauge_rouge);
-	        TouchIn(jauge_verte);
-	        TouchIn(jauge_bleu);
+	        if (TouchIn(boutton_changer_de_mode)){ //on cherche a detecter si on change de mode
+	        	Changer_de_Mode();
+
+
+	        }
+
+	        switch (Etat_machine){
+	        	case Mode_Manuel:
+	        		TouchIn(jauge_rouge);
+	        		TouchIn(jauge_verte);
+	        		TouchIn(jauge_bleu);
+
+
+	        }
+
+
 
 	      } // end if
 	    } // end if
@@ -187,9 +200,11 @@ void TouchScreenCallBack(){
  */
 int TouchIn(FormeTypeDef forme){
 
+	int ret = 0;
+
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
-
+		ret = 1;
 		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
 			// alors on manipule une jauge
 			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
@@ -215,23 +230,17 @@ int TouchIn(FormeTypeDef forme){
 
 		} // end if
 
-		else if (forme.Id = 'A'){ // alors on manipule le boutton changer de mode
-			if (Etat_machine == Mode_Manuel){
-				Etat_machine = Mode_Automatique;
-
-
-		} // end if
 
 
 
 
 	}// end if
 
-	} // end switch
 
 
 
-	return curseur;
+
+	return ret;
 
 }
 
@@ -302,7 +311,19 @@ void afficher_changer_de_mode(){
 /*
  * @brief
  */
-void callback_changer_de_mode(){
+void Changer_de_Mode(){
+
+	switch (Etat_machine){
+		case Mode_Manuel:
+			Etat_machine = Mode_Automatique;
+			Lancer_Mode_Automatique();
+			break;
+		case Mode_Automatique:
+			Etat_machine = Mode_Manuel;
+			Lancer_Mode_Manuel();
+			break;
+
+	}
 
 
 
@@ -335,6 +356,8 @@ void Lancer_Mode_Automatique(){
 	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Automatique" , LEFT_MODE);
+	afficher_changer_de_mode();
+	afficher_bandes_couleurs();
 }
 
 

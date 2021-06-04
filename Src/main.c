@@ -65,27 +65,25 @@ int main(void)
   LCD_Init(lcd_status);
 
   set_variables();
-  afficher_bandes_couleurs();
+
+
+  affichage_boot();
   Lancer_Mode_Manuel();
+
 
   while (1)
   {
+	  TouchScreenCallBack();
 
-	  switch (Etat_machine){
-	  	  case BOOT:
-	  		  break;
-	  	  case Mode_Manuel:
-	  		  TouchScreenCallBack();
-	  		  break;
 	  }
 
 
-	TouchScreenCallBack();
+
     RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
 
 
-  }
+
 }
 
 /**
