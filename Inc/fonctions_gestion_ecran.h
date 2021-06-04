@@ -8,7 +8,7 @@
 
 
 
-
+void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite);
 
 void afficher_bandes_couleurs();
 void TouchScreenCallBack();

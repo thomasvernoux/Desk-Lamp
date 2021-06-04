@@ -74,7 +74,18 @@ extern STATE_MachineTypeDef Etat_machine;
 
 
 
+void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite){
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_FillRect(forme.bordG+1,forme.bordH+1,(forme.bordD-forme.bordG)-1, (forme.bordB-forme.bordH)-1);
+	if (forme.Id == 'R')
+		BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	else if (forme.Id == 'V')
+		BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
+	else if (forme.Id == 'B')
+		BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 
+	BSP_LCD_FillRect(forme.bordG+1,forme.bordH+1,((forme.bordD-forme.bordG)-1)*Intensite/largeur_bande, (forme.bordB-forme.bordH)-1);
+}
 
 /*
  * @brief Cette fonction permet d'afficher l'ecran de controlle manuel
@@ -122,14 +133,7 @@ void afficher_bandes_couleurs(){
 	jauge_bleu.bordB = pYbB + hauteur_bande;
 	jauge_bleu.bordG = pXbB;
 	jauge_bleu.bordD = pXbB + largeur_bande;
-	jauge_bleu
-
-
-
-
-
-
-	.Id = 'B';
+	jauge_bleu.Id = 'B';
 
 
 	// afficher les chiffres qui indiquent le remplissage des jauges
@@ -186,13 +190,15 @@ int TouchIn(FormeTypeDef forme){
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+		BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 		BSP_LCD_SetFont(&Font24);
 		char buffer[10];
 		itoa(x,buffer,10);
+
 		BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-
+		x = x - 18; //Suppression marge bord
+		Remplissage_jauge_Callback(forme, x);
 	switch(forme.Id){
 		case 'R':
 			etatlumiere_R = x;
