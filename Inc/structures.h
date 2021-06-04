@@ -14,3 +14,20 @@ typedef struct
     int bordD;
 } FormeTypeDef;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

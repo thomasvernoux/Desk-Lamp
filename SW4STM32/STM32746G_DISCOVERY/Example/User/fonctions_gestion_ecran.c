@@ -81,8 +81,8 @@ FormeTypeDef jauge_bleu;
 void afficher_bandes_couleurs(){
 
 
-
 	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font16);
 
 	// Titre
 	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
@@ -112,10 +112,13 @@ void afficher_bandes_couleurs(){
 	// Bande Bleue
 	BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 	BSP_LCD_DrawRect(pXbB, pYbB,largeur_bande, hauteur_bande);
-	jauge_verte.bordH = pYbB;
-	jauge_verte.bordB = pYbB + hauteur_bande;
-	jauge_verte.bordG = pXbB;
-	jauge_verte.bordD = pXbB + largeur_bande;
+	jauge_bleu.bordH = pYbB;
+	jauge_bleu.bordB = pYbB + hauteur_bande;
+	jauge_bleu.bordG = pXbB;
+	jauge_bleu.bordD = pXbB + largeur_bande;
+
+
+
 
 
 }
@@ -149,15 +152,6 @@ void TouchScreenCallBack(){
  */
 int TouchIn(FormeTypeDef forme){
 
-	AED("G", forme.bordG, 1);
-	AED("D", forme.bordD, 2);
-	AED("H", forme.bordH, 3);
-	AED("B", forme.bordB, 4);
-
-	AED("x", x, 7);
-	AED("y", y, 8);
-
-	AED("if", (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB), 9);
 
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
