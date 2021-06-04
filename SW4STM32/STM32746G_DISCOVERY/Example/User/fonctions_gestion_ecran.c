@@ -9,7 +9,8 @@
 #include "main.h"
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 
 
 
@@ -58,7 +59,7 @@ int surseur_jauge_verte;
 int curseur_jauge_bleue;
 
 extern int etatlumiere_R;
-extern int etatlumiere_V;
+extern int etatlumiere_G;
 extern int etatlumiere_B;
 
 
@@ -100,6 +101,7 @@ void afficher_bandes_couleurs(){
 	jauge_rouge.bordB = pYbR + hauteur_bande;
 	jauge_rouge.bordG = pXbR;
 	jauge_rouge.bordD = pXbR + largeur_bande;
+	jauge_rouge.Id = 'R';
 
 	// Bande Verte
 	BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
@@ -108,10 +110,12 @@ void afficher_bandes_couleurs(){
 	jauge_verte.bordB = pYbV + hauteur_bande;
 	jauge_verte.bordG = pXbV;
 	jauge_verte.bordD = pXbV + largeur_bande;
+	jauge_rouge.Id = 'V';
 
 	// Bande Bleue
 	BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 	BSP_LCD_DrawRect(pXbB, pYbB,largeur_bande, hauteur_bande);
+
 	jauge_bleu.bordH = pYbB;
 	jauge_bleu.bordB = pYbB + hauteur_bande;
 	jauge_bleu.bordG = pXbB;
@@ -134,6 +138,7 @@ void afficher_bandes_couleurs(){
 
 	itoa(etatlumiere_B,buffer,10);
 	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
 
 
 
@@ -168,7 +173,6 @@ void TouchScreenCallBack(){
  */
 int TouchIn(FormeTypeDef forme){
 
-
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 
@@ -188,14 +192,14 @@ int TouchIn(FormeTypeDef forme){
 			etatlumiere_R = x;
 			break;
 		case 'V':
-			etatlumiere_V = x;
+			etatlumiere_G = x;
 			break;
 		case 'B':
 			etatlumiere_B = x;
 			break;
 	} // end switch
 
-
+	 AED("eR",etatlumiere_R,2);
 
 	return curseur;
 

@@ -1,5 +1,6 @@
 #include "variables.h"
 #include "stm32746g_discovery_lcd.h"
+#include "main.h"
 
 // variables globales ecran
 int TEX; // taille de l'ecran (en x et y)
@@ -30,9 +31,9 @@ int hauteur_bande = 40; // hauteur de la bande
 // variables ecran tactile
 int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 
-int etatlumiere_R;
-int etatlumiere_V;
-int etatlumiere_B;
+extern int etatlumiere_R;
+extern int etatlumiere_G;
+extern int etatlumiere_B;
 
 
 

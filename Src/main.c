@@ -11,12 +11,14 @@
 #include "variables.h"
 #include "fonctions_gestion_ecran.h"
 #include "structures.h"
-
-
+#include "gpio.h"
+#include "tim.h"
+#include "PWM.h"
+#include "Lumiere.h"
+#include "my_math.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-static uint8_t DemoIndex = 0;
 
 /* Global extern variables ---------------------------------------------------*/
 uint8_t NbLoop = 1;
@@ -24,9 +26,9 @@ uint8_t NbLoop = 1;
 uint32_t    ErrorCounter = 0;
 #endif
 
-
-
-
+int etatlumiere_R;
+int etatlumiere_G;
+int etatlumiere_B;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void LCD_Init(uint8_t  lcd_status);
@@ -66,18 +68,23 @@ int main(void)
   BSP_LED_Init(LED1);
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
+  MX_GPIO_Init();
+  MX_TIM3_Init();
+  MX_TIM2_Init();
+  MX_TIM1_Init();
+  MX_TIM12_Init();
 
   LCD_Init(lcd_status);
 
-//TODO
   set_variables();
   afficher_bandes_couleurs();
- 
+  R_Light_Callback(30000);
 
   while (1)
   {
 	  TouchScreenCallBack();
-
+    RGBW_Light_Callback(map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535));
+    AED("eBmain",etatlumiere_B,1);
 
 
 
@@ -238,6 +245,23 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif /* USE_FULL_ASSERT */
+
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
 
 /**
   * @}
