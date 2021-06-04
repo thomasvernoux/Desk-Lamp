@@ -291,7 +291,7 @@ void afficher_changer_de_mode(){
 	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 
-	BSP_LCD_DisplayStringAt(250,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
+	BSP_LCD_DisplayStringAt(BCM_pX,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
 
 	// on dessine un carré autour
 	boutton_changer_de_mode.Id = 'A';
