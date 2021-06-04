@@ -1,13 +1,16 @@
+#pragma once
+
 #include "main.h"
 
 /*
  * @brief Cette structure est une forme sur l'ecran, elle contient les coordonnées des points de la forme
  */
-struct Forme
+typedef struct
 {
-    int CHG; // coin en haut à gauche
-    int CHD;
-    int CBG;
-    int CBD;
-};
+	char Id;                             // contient la couleur
+    int bordH;
+    int bordB;
+    int bordG;
+    int bordD;
+} FormeTypeDef;
 

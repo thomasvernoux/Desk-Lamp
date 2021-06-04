@@ -27,22 +27,24 @@ void RGBW_Light_Callback(const unsigned int R_value,const unsigned int G_value,c
 }
 
 
-void R_Light_Callback(const unsigned int Intensite){ //D3
+
+void R_Light_Callback(const unsigned int Intensite){ 
 	R_old_value = Intensite;
 	MP_setPWM(&htim3,TIM_CHANNEL_1,Intensite);
 }
 
-void G_Light_Callback(const unsigned int Intensite){ //D6
+void G_Light_Callback(const unsigned int Intensite){ 
 	G_old_value = Intensite;
 	MP_setPWM(&htim12,TIM_CHANNEL_1,Intensite);
 }
 
-void B_Light_Callback(const unsigned int Intensite){ //D9
+void B_Light_Callback(const unsigned int Intensite){
 	B_old_value = Intensite;
 	MP_setPWM(&htim2,TIM_CHANNEL_1,Intensite);
 }
 
-void W_Light_Callback(const unsigned int Intensite){ //D5
+
+void W_Light_Callback(const unsigned int Intensite){ 
 	W_old_value = Intensite;
 	MP_setPWM(&htim12,TIM_CHANNEL_2,Intensite);
 }

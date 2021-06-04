@@ -29,6 +29,7 @@
 *.m
 *.png
 
+*.xml
 
 # Vagrant directory
 .vagrant/
