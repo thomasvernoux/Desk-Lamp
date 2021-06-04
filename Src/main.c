@@ -52,7 +52,6 @@ int main(void)
 
   BSP_LED_Init(LED1);
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
-
   MX_GPIO_Init();
   MX_TIM3_Init();
   MX_TIM2_Init();
@@ -65,6 +64,7 @@ int main(void)
   afficher_bandes_couleurs();
   R_Light_Callback(30000);
 
+
   while (1)
   {
 
@@ -74,6 +74,7 @@ int main(void)
 	  	  case Mode_Manuel:
 	  		  break;
 	  }
+
 	  TouchScreenCallBack();
     RGBW_Light_Callback(map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535));
 

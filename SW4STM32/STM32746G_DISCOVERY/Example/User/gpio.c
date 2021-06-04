@@ -1,11 +1,3 @@
-/*
- * gpio.c
- *
- *  Created on: 3 juin 2021
- *      Author: mario
- */
-
-
 /**
   ******************************************************************************
   * @file    gpio.c
@@ -27,7 +19,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
-#include "main.h"
+
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -170,7 +162,6 @@
      PE13   ------> FMC_D10_DA10
      PB11   ------> USB_OTG_HS_ULPI_D4
      PB14   ------> SPI2_MISO
-     PB15   ------> SPI2_MOSI
 */
 void MX_GPIO_Init(void)
 {
@@ -634,13 +625,13 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PBPin PBPin */
-  GPIO_InitStruct.Pin = ARDUINO_MISO_D12_Pin|ARDUINO_MOSI_PWM_D11_Pin;
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = ARDUINO_MISO_D12_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(ARDUINO_MISO_D12_GPIO_Port, &GPIO_InitStruct);
 
 }
 
