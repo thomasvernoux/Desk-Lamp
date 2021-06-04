@@ -186,7 +186,7 @@ int TouchIn(FormeTypeDef forme){
 		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 		BSP_LCD_SetFont(&Font24);
 		char buffer[10];
-		itoa(x,buffer,10);
+		itoa(x/10,buffer,10);
 		BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 	}// end if
 
@@ -249,6 +249,11 @@ void affichage_boot(){
 	return;
 }
 
+void afficher_changer_de_mode(){
+
+
+	return;
+}
 
 
 

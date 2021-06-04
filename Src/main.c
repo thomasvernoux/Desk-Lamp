@@ -72,10 +72,11 @@ int main(void)
 	  	  case BOOT:
 	  		  break;
 	  	  case Mode_Manuel:
+	  		  TouchScreenCallBack();
 	  		  break;
 	  }
 
-	  TouchScreenCallBack();
+
     RGBW_Light_Callback(map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535),map(etatlumiere_B,0,512,0,65535));
 
 
