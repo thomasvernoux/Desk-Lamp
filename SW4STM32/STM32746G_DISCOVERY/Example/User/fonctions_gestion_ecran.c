@@ -118,6 +118,22 @@ void afficher_bandes_couleurs(){
 	jauge_bleu.bordD = pXbB + largeur_bande;
 
 
+	// afficher les chiffres qui indiquent le remplissage des jauges
+
+
+	char buffer[10];
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetFont(&Font24);
+
+	itoa(etatlumiere_R,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	itoa(etatlumiere_V,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	itoa(etatlumiere_B,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
 
 
