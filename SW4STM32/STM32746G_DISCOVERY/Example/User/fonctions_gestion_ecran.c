@@ -199,6 +199,8 @@ int TouchIn(FormeTypeDef forme){
 			char buffer[10];
 			itoa(x,buffer,10);
 			BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+			x = x - 18;
+			Remplissage_jauge_Callback(forme, x);
 			switch(forme.Id){
 					case 'R':
 						etatlumiere_R = x;
