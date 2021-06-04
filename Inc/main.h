@@ -423,6 +423,12 @@ typedef enum {
   AUDIO_ERROR_EOF,
 }AUDIO_ErrorTypeDef;
 
+typedef enum {
+  Mode_Manuel,
+  Mode_Automatique,
+  BOOT,
+}STATE_MachineTypeDef;
+
 extern const unsigned char stlogo[];
 /* Exported variables ---------------------------------------------------*/
 extern uint8_t     NbLoop;

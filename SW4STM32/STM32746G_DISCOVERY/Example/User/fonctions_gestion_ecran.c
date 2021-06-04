@@ -69,6 +69,9 @@ FormeTypeDef jauge_rouge;
 FormeTypeDef jauge_verte;
 FormeTypeDef jauge_bleu;
 
+/* Variables de la machine d'etat ---------------------------------------------*/
+extern STATE_MachineTypeDef Etat_machine;
+
 
 
 
@@ -229,6 +232,21 @@ void AED(char label[10], int var, int place){
 
 
 
+}
+
+void affichage_boot(){
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetFont(&Font24);
+
+	BSP_LCD_DisplayStringAt(TEX/2,TEY/2, (uint8_t *) "Wesh" , LEFT_MODE);
+
+	HAL_Delay(1000);
+	Etat_machine = Mode_Manuel;
+
+
+	return;
 }
 
 
