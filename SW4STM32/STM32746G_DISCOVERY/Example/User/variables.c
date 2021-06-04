@@ -28,6 +28,15 @@ int pYbB;
 int largeur_bande;
 int hauteur_bande = 40; // hauteur de la bande
 
+
+// variables boutton changer de mode
+
+int BCM_pX = 250; // position X
+int BCM_pY = 20; // position Y
+int BCM_largeur = 100; // largeur
+int BCM_hauteur = 16; // hauteur
+
+
 // variables ecran tactile
 int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 

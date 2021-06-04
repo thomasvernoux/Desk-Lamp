@@ -62,12 +62,20 @@ extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
 
+// noutton changer de mode :
+extern int BCM_pX; // position X
+extern int BCM_pY; // position Y
+extern int BCM_largeur; // largeur
+extern int BCM_hauteur; // hauteur
+
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
 FormeTypeDef jauge_rouge;
 FormeTypeDef jauge_verte;
 FormeTypeDef jauge_bleu;
+// boutton changer de mode
+FormeTypeDef boutton_changer_de_mode;
 
 /* Variables de la machine d'etat ---------------------------------------------*/
 extern STATE_MachineTypeDef Etat_machine;
@@ -84,17 +92,6 @@ extern STATE_MachineTypeDef Etat_machine;
 
 void afficher_bandes_couleurs(){
 
-
-	BSP_LCD_Clear(LCD_COLOR_WHITE);
-	BSP_LCD_SetFont(&Font16);
-
-	// Titre
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Manuel" , LEFT_MODE);
-
-	// Configuration
-	BSP_LCD_DisplayStringAt(250,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
 
 
 	// Bande Rouge
@@ -122,14 +119,9 @@ void afficher_bandes_couleurs(){
 	jauge_bleu.bordB = pYbB + hauteur_bande;
 	jauge_bleu.bordG = pXbB;
 	jauge_bleu.bordD = pXbB + largeur_bande;
-	jauge_bleu
 
+	jauge_bleu.Id = 'B';
 
-
-
-
-
-	.Id = 'B';
 
 
 	// afficher les chiffres qui indiquent le remplissage des jauges
@@ -154,6 +146,9 @@ void afficher_bandes_couleurs(){
 
 }
 
+/*
+ * @brief c'est le callback pour les jauges uniquement
+ */
 void TouchScreenCallBack(){
 
 	uint8_t  status = 0;
@@ -185,27 +180,43 @@ int TouchIn(FormeTypeDef forme){
 
 	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
-		BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-		BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
-		BSP_LCD_SetFont(&Font24);
-		char buffer[10];
-		itoa(x,buffer,10);
-		BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
+			// alors on manipule une jauge
+			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+			BSP_LCD_SetFont(&Font24);
+			char buffer[10];
+			itoa(x,buffer,10);
+			BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+			switch(forme.Id){
+					case 'R':
+						etatlumiere_R = x;
+						break;
+					case 'V':
+						etatlumiere_G = x;
+						break;
+					case 'B':
+						etatlumiere_B = x;
+						break;
+			} // end switch
+
+		} // end if
+
+		else if (forme.Id = 'A'){ // alors on manipule le boutton changer de mode
+			if (Etat_machine == Mode_Manuel){
+				Etat_machine = Mode_Automatique;
 
 
-	switch(forme.Id){
-		case 'R':
-			etatlumiere_R = x;
-			break;
-		case 'V':
-			etatlumiere_G = x;
-			break;
-		case 'B':
-			etatlumiere_B = x;
-			break;
+		} // end if
 
 
-		}// end if
+
+
+	}// end if
+
+
+
 	} // end switch
 
 
@@ -255,7 +266,66 @@ void affichage_boot(){
 	return;
 }
 
+void afficher_changer_de_mode(){
+	BSP_LCD_SetFont(&Font16);
 
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+
+	BSP_LCD_DisplayStringAt(250,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
+
+	// on dessine un carré autour
+	boutton_changer_de_mode.Id = 'A';
+	boutton_changer_de_mode.bordH = BCM_pY;
+	boutton_changer_de_mode.bordB = BCM_pY + BCM_hauteur;
+	boutton_changer_de_mode.bordG = BCM_pX;
+	boutton_changer_de_mode.bordD = BCM_pX + BCM_largeur;
+
+
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
+
+
+	return;
+}
+
+/*
+ * @brief
+ */
+void callback_changer_de_mode(){
+
+
+
+
+}
+
+/*
+ * @brief affiche a l'ecran mode manuel
+ */
+void Lancer_Mode_Manuel(){
+
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font16);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Manuel" , LEFT_MODE);
+
+
+	afficher_bandes_couleurs();
+	afficher_changer_de_mode();
+}
+
+/*
+ * @brief affiche a l'ecran mode manuel
+ */
+void Lancer_Mode_Automatique(){
+
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font16);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Automatique" , LEFT_MODE);
+}
 
 
 
