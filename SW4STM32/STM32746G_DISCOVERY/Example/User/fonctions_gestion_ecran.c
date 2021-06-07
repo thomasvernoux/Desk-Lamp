@@ -11,6 +11,7 @@
 #include "variables.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Lumiere.h"
 
 
 

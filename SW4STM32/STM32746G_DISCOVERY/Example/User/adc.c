@@ -30,7 +30,7 @@ ADC_HandleTypeDef hadc3;
 uint16_t my_analogRead(ADC_HandleTypeDef *hadc){
 	  uint16_t value = 0;
 	  HAL_ADC_Start(hadc);
-	  HAL_ADC_PollForConversion(hadc,10);
+	//  HAL_ADC_PollForConversion(hadc,10);
 	  value = HAL_ADC_GetValue(hadc);
 	  HAL_ADC_Stop(hadc);
 	  return value;

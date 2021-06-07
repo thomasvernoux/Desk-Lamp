@@ -6,3 +6,6 @@ void R_Light_Callback(const unsigned int Intensite);
 void G_Light_Callback(const unsigned int Intensite);
 void B_Light_Callback(const unsigned int Intensite);
 void W_Light_Callback(const unsigned int Intensite);
+
+
+void callback_mode_automatique(); // fonction faite par thomas

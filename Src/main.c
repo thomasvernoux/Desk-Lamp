@@ -41,7 +41,7 @@ static void SystemClock_Config(void);
 static void LCD_Init(uint8_t  lcd_status);
 static void CPU_CACHE_Enable(void);
 
-STATE_MachineTypeDef Etat_machine = Mode_Manuel;
+STATE_MachineTypeDef Etat_machine = Mode_Automatique;
 
 
 /**
@@ -83,8 +83,12 @@ int main(void)
   {
 	  TouchScreenCallBack();
 	  RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
+	  switch (Etat_machine){
+	  	  case Mode_Automatique :
+	  		  callback_mode_automatique();
 
-	  }
+	  } // end switch
+  } // end while
 
 
 
