@@ -410,6 +410,7 @@
 #define AUDIO_SRC_FILE_ADDRESS       0x08080000   /* Audio file address in flash */
 
 /* Exported types ------------------------------------------------------------*/
+
 typedef struct
 {
   void   (*DemoFunc)(void);
@@ -442,6 +443,9 @@ extern uint32_t    ErrorCounter;
 
 #define COUNT_OF_EXAMPLE(x)    (sizeof(x)/sizeof(BSP_DemoTypedef))
 /* Exported functions ------------------------------------------------------- */
+
+
+
 void AudioPlay_demo (void);
 void AudioRec_demo (void);
 void AudioLoopback_demo (void);
