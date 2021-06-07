@@ -13,8 +13,11 @@
 #include "structures.h"
 #include "gpio.h"
 #include "tim.h"
+#include "adc.h"
 #include "PWM.h"
 #include "Lumiere.h"
+
+#include "stm32f7xx_hal_adc.h"
 #include "my_math.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,6 +60,7 @@ int main(void)
   BSP_LED_Init(LED1);
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
   MX_GPIO_Init();
+  MX_ADC3_Init();
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_TIM1_Init();
@@ -69,6 +73,10 @@ int main(void)
 
   affichage_boot();
   Lancer_Mode_Manuel();
+
+
+  uint16_t Avalue = my_analogRead(&hadc3);
+
 
 
   while (1)
