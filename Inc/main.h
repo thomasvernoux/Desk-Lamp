@@ -33,6 +33,7 @@
 #include "stm32746g_discovery_audio.h"
 #include "stm32746g_discovery_qspi.h"
 
+
 /*Define port pin------------------------------*/
 #define LCD_B0_Pin GPIO_PIN_4
 #define LCD_B0_GPIO_Port GPIOE
