@@ -75,12 +75,19 @@ extern int BCM_hauteur; // hauteur
 FormeTypeDef jauge_rouge;
 FormeTypeDef jauge_verte;
 FormeTypeDef jauge_bleu;
-// boutton changer de mode
+// bouttons
 FormeTypeDef boutton_changer_de_mode;
+FormeTypeDef boutton_OFF;
+FormeTypeDef boutton_FULL;
+FormeTypeDef boutton_MID;
 
 /* Variables de la machine d'etat ---------------------------------------------*/
 extern STATE_MachineTypeDef Etat_machine;
 
+
+// variables bouttons
+extern int largeur_boutton_FMO; // full mid off
+extern int hauteur_boutton_FMO; // full mid off
 
 
 void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite){
@@ -171,8 +178,6 @@ void TouchScreenCallBack(){
 
 	        if (TouchIn(boutton_changer_de_mode)){ //on cherche a detecter si on change de mode
 	        	Changer_de_Mode();
-
-
 	        }
 
 	        switch (Etat_machine){
@@ -190,9 +195,105 @@ void TouchScreenCallBack(){
 
 	        		} // end if
 
+	        } // end switch etat machine
+
+	        if (TouchIn(boutton_FULL)){
+	        	Etat_machine = Mode_Manuel;
+	        	Lancer_Mode_Manuel();
+	        	etatlumiere_R = 100;
+	        	etatlumiere_G = 100;
+	        	etatlumiere_B = 100;
+	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
+	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
+	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+
+	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	        	char buffer[10];
+	        	itoa(etatlumiere_R,buffer,10);
+	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	itoa(etatlumiere_G,buffer,10);
+	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	itoa(etatlumiere_B,buffer,10);
+	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        } // end if FULL
+
+	        if (TouchIn(boutton_MID)){
+	        	Etat_machine = Mode_Manuel;
+	        	        	Lancer_Mode_Manuel();
+	        	        	etatlumiere_R = 50;
+	        	        	etatlumiere_G = 50;
+	        	        	etatlumiere_B = 50;
+	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
+	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
+	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+
+	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	        	        	char buffer[10];
+	        	        	itoa(etatlumiere_R,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_G,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_B,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
 
-	        }
+
+	        	        } // end if
+	        if (TouchIn(boutton_OFF)){
+	        	Etat_machine = Mode_Manuel;
+	        	        	Lancer_Mode_Manuel();
+	        	        	etatlumiere_R = 50;
+	        	        	etatlumiere_G = 50;
+	        	        	etatlumiere_B = 50;
+	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
+	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
+	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+
+	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	        	        	char buffer[10];
+	        	        	itoa(etatlumiere_R,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_G,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_B,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+
+
+	        	        } // end if MID
+
+	        if (TouchIn(boutton_OFF)){
+	        	Etat_machine = Mode_Manuel;
+	        	        	Lancer_Mode_Manuel();
+	        	        	etatlumiere_R = 0;
+	        	        	etatlumiere_G = 0;
+	        	        	etatlumiere_B = 0;
+	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
+	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
+	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+
+	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	        	        	char buffer[10];
+	        	        	itoa(etatlumiere_R,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_G,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	        	        	itoa(etatlumiere_B,buffer,10);
+	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+
+
+	        	        } // end if OFF
+
 
 
 
@@ -211,15 +312,15 @@ int TouchIn(FormeTypeDef forme){
 
 	int ret = 0;
 
-	int curseur = -1;
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 		ret = 1;
 		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
 			// alors on manipule une jauge
 
-			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 			BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 			BSP_LCD_SetFont(&Font24);
 			char buffer[10];
 			x = x - 18;
@@ -311,8 +412,8 @@ void afficher_changer_de_mode(){
 	boutton_changer_de_mode.bordD = BCM_pX + BCM_largeur;
 
 
-	//BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	//BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
 
 
 	return;
@@ -354,6 +455,16 @@ void Lancer_Mode_Manuel(){
 
 	afficher_bandes_couleurs();
 	afficher_changer_de_mode();
+
+	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
+	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
+	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+
+
+	// affichage des bouttons
+	afficher_boutton_FULL();
+	afficher_boutton_OFF();
+	afficher_boutton_MID();
 }
 
 /*
@@ -368,8 +479,76 @@ void Lancer_Mode_Automatique(){
 	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Automatique" , LEFT_MODE);
 	afficher_changer_de_mode();
 	afficher_bandes_couleurs();
+
+	// affichage des bouttons
+	afficher_boutton_FULL();
+	afficher_boutton_OFF();
+	afficher_boutton_MID();
 }
 
+
+
+void afficher_boutton_FULL(){
+
+	BSP_LCD_SetFont(&Font24);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+
+	BSP_LCD_DisplayStringAt(pXbR + largeur_bande + 80,pYbR +10, (uint8_t *) "FULL" , LEFT_MODE);
+
+	// on dessine un carré autour
+	boutton_FULL.Id = 'F';
+	boutton_FULL.bordH = pYbR;
+	boutton_FULL.bordB = pYbR + hauteur_boutton_FMO;
+	boutton_FULL.bordG = pXbR + largeur_bande + 80;
+	boutton_FULL.bordD = pXbR + largeur_bande + 80 + largeur_boutton_FMO;
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DrawRect(boutton_FULL.bordG , boutton_FULL.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
+
+
+	return;
+}
+
+void afficher_boutton_MID(){
+	BSP_LCD_SetFont(&Font24);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+
+	BSP_LCD_DisplayStringAt(pXbV + largeur_bande + 80,pYbV +10, (uint8_t *) "MID" , LEFT_MODE);
+
+	// on dessine un carré autour
+	boutton_MID.Id = 'M';
+	boutton_MID.bordH = pYbV;
+	boutton_MID.bordB = pYbV + hauteur_boutton_FMO;
+	boutton_MID.bordG = pXbV + largeur_bande + 80;
+	boutton_MID.bordD = pXbV + largeur_bande + 80 + largeur_boutton_FMO;
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DrawRect(boutton_MID.bordG , boutton_MID.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
+
+
+		return;
+}
+
+
+void afficher_boutton_OFF(){
+	BSP_LCD_SetFont(&Font24);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+
+	BSP_LCD_DisplayStringAt(pXbB + largeur_bande + 80,pYbB +10, (uint8_t *) "OFF" , LEFT_MODE);
+
+	// on dessine un carré autour
+	boutton_OFF.Id = 'O';
+	boutton_OFF.bordH = pYbB;
+	boutton_OFF.bordB = pYbB + hauteur_boutton_FMO;
+	boutton_OFF.bordG = pXbB + largeur_bande + 80;
+	boutton_OFF.bordD = pXbB + largeur_bande + 80 + largeur_boutton_FMO;
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DrawRect(boutton_OFF.bordG, boutton_OFF.bordH ,largeur_boutton_FMO, hauteur_boutton_FMO);
+
+
+	return;
+}
 
 
 

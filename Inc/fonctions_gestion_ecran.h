@@ -18,4 +18,8 @@ void affichage_boot();
 void afficher_changer_de_mode();
 void Changer_de_Mode();
 
+void afficher_boutton_FULL();
+void afficher_boutton_MID();
+void afficher_boutton_OFF();
+
 

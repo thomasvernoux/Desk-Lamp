@@ -12,7 +12,7 @@ int TEY;
 // variables ecran 3 bandes
 
 int marge_haut = 20;
-int marge_droite = 100;
+int marge_droite = 200;
 int marge_gauche = 20;
 
 
@@ -36,13 +36,17 @@ int BCM_pY = 0; // position Y
 int BCM_largeur = 165; // largeur
 int BCM_hauteur = 55; // hauteur
 
+// variables autres bouttons
+int largeur_boutton_FMO = 100; // full mid off
+int hauteur_boutton_FMO = 50; // full mid off
+
 
 // variables ecran tactile
 int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 
-extern int etatlumiere_R;
-extern int etatlumiere_G;
-extern int etatlumiere_B;
+int etatlumiere_R = 360/2;
+int etatlumiere_G = 360/2;
+int etatlumiere_B = 360/2;
 
 
 
@@ -67,9 +71,7 @@ void set_variables(){
 	pXbB = 20;
 	pYbB = TEY/4 * 3 - hauteur_bande/2 + marge_haut;
 
-	etatlumiere_R = 50;
-	etatlumiere_G = 50;
-	etatlumiere_B = 50;
+
 }
 
 

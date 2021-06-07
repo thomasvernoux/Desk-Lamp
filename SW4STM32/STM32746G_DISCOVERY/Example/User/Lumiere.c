@@ -9,6 +9,7 @@
 #include "Lumiere.h"
 #include "tim.h"
 #include "PWM.h"
+#include "adc.h"
 
 unsigned int R_old_value = 0;
 unsigned int G_old_value = 0;
@@ -62,7 +63,7 @@ void W_Light_Callback(const unsigned int Intensite){
  *
  */
 void callback_mode_automatique() {
-	int valeur_lumiere = my_analogRead();
+	int valeur_lumiere = my_analogRead(&hadc3);
 	etatlumiere_R = valeur_lumiere;
 	etatlumiere_G = valeur_lumiere;
 	etatlumiere_B = valeur_lumiere;

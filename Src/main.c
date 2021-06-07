@@ -75,9 +75,6 @@ int main(void)
   Lancer_Mode_Manuel();
 
 
-  uint16_t Avalue = my_analogRead(&hadc3);
-
-
 
   while (1)
   {
