@@ -44,9 +44,9 @@ int hauteur_boutton_FMO = 50; // full mid off
 // variables ecran tactile
 int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 
-int etatlumiere_R = 360/2;
-int etatlumiere_G = 360/2;
-int etatlumiere_B = 360/2;
+int etatlumiere_R = 100/2;
+int etatlumiere_G = 100/2;
+int etatlumiere_B = 100/2;
 
 
 

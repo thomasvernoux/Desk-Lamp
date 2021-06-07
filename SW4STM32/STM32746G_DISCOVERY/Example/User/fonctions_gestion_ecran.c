@@ -6,7 +6,8 @@
  */
 
 #include "fonctions_gestion_ecran.h"
-#include "main.h"
+#include "main.h".0
+
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
 #include <stdio.h>
@@ -100,7 +101,7 @@ void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite){
 	else if (forme.Id == 'B')
 		BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 
-	BSP_LCD_FillRect(forme.bordG+1,forme.bordH+1,((forme.bordD-forme.bordG)-1)*Intensite/largeur_bande, (forme.bordB-forme.bordH)-1);
+	BSP_LCD_FillRect(forme.bordG+1,forme.bordH+1,((forme.bordD-forme.bordG)-1)*Intensite/100, (forme.bordB-forme.bordH)-1);
 }
 
 /*
@@ -322,11 +323,13 @@ int TouchIn(FormeTypeDef forme){
 			BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
 			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 			BSP_LCD_SetFont(&Font24);
+
 			char buffer[10];
-			x = x - 18;
+			x = (x-18) *100 / (largeur_bande);
+			Remplissage_jauge_Callback(forme, x);
 			itoa(x,buffer,10);
 			BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-			Remplissage_jauge_Callback(forme, x);
+
 			switch(forme.Id){
 					case 'R':
 						etatlumiere_R = x;
@@ -468,7 +471,7 @@ void Lancer_Mode_Manuel(){
 }
 
 /*
- * @brief affiche a l'ecran mode manuel
+ * @brief affiche a l'ecran mode automatique
  */
 void Lancer_Mode_Automatique(){
 
@@ -510,6 +513,7 @@ void afficher_boutton_FULL(){
 }
 
 void afficher_boutton_MID(){
+
 	BSP_LCD_SetFont(&Font24);
 	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
