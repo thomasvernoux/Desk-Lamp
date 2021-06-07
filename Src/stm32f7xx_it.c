@@ -45,6 +45,8 @@ extern SAI_HandleTypeDef haudio_out_sai;
 extern SAI_HandleTypeDef haudio_in_sai;
 /* SDRAM handler declared in "stm32746g_discovery_sdram.c" file */
 extern SDRAM_HandleTypeDef sdramHandle;
+
+extern DMA_HandleTypeDef hdma_tim1_ch1;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -223,7 +225,9 @@ void BSP_SDRAM_DMA_IRQHandler(void)
   */
 void DMA2_Stream1_IRQHandler(void)
 {
-  BSP_CAMERA_DMA_IRQHandler();
+  HAL_DMA_IRQHandler(&hdma_tim1_ch1);
+  //BSP_CAMERA_DMA_IRQHandler();
+  
 }
 
 /**

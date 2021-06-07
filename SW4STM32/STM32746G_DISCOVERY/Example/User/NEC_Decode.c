@@ -12,7 +12,17 @@
 extern NEC nec;
 void NEC_Init(NEC* handle);
 void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
+	  if(address == 50 ){
+	    	if (cmd == 2){
+	    		NEC_Read(&nec);
+	    	}
+	    	else if (cmd == 46){
+	    		NEC_Read(&nec);
+	    	}
+	    }
+
     NEC_Read(&nec);
+
 }
 
 void myNecErrorCallback() {
@@ -96,6 +106,6 @@ void NEC_TIM_IC_CaptureCallback(NEC* handle) {
 
 void NEC_Read(NEC* handle) {
     handle->state = NEC_INIT;
-    HAL_TIM_IC_Start_DMA(handle->timerHandle, handle->timerChannel,
-            (uint32_t*) handle->rawTimerData, 2);
+   // HAL_TIM_IC_Start_IT(handle->timerHandle, handle->timerChannel);
+    HAL_TIM_IC_Start_DMA(handle->timerHandle, handle->timerChannel,(uint32_t*) handle->rawTimerData, 2);
 }
