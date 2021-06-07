@@ -70,11 +70,8 @@ int main(void)
   afficher_bandes_couleurs();
   Lancer_Mode_Manuel();
 
-  uint16_t value = 0;
-  HAL_ADC_Start(&hadc3);
-  HAL_ADC_PollForConversion(&hadc3,10);
-  value = HAL_ADC_GetValue(&hadc3);
-  HAL_ADC_Stop(&hadc3);
+  uint16_t Avalue = my_analogRead(&hadc3);
+
 
   while (1)
   {

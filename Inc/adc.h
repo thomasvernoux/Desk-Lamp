@@ -36,7 +36,7 @@ extern ADC_HandleTypeDef hadc3;
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
-
+uint16_t my_analogRead(ADC_HandleTypeDef *hadc);
 void MX_ADC3_Init(void);
 
 /* USER CODE BEGIN Prototypes */
