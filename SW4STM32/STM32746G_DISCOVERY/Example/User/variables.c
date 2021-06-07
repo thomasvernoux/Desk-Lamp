@@ -31,7 +31,7 @@ int hauteur_bande = 40; // hauteur de la bande
 
 // variables boutton changer de mode
 
-int BCM_pX = 200; // position X
+int BCM_pX = 250; // position X
 int BCM_pY = 0; // position Y
 int BCM_largeur = 165; // largeur
 int BCM_hauteur = 55; // hauteur
@@ -43,19 +43,6 @@ int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
