@@ -82,12 +82,13 @@ int main(void)
   while (1)
   {
 	  TouchScreenCallBack();
+	  RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
 	  }
 
 
 
-    RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
+
 
 
 

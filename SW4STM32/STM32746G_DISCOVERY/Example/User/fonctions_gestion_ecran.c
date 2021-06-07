@@ -103,8 +103,6 @@ void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite){
 
 void afficher_bandes_couleurs(){
 
-
-
 	// Bande Rouge
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
 	BSP_LCD_DrawRect(pXbR, pYbR,largeur_bande, hauteur_bande);
@@ -137,8 +135,8 @@ void afficher_bandes_couleurs(){
 
 
 	char buffer[10];
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font24);
 
 	itoa(etatlumiere_R,buffer,10);
@@ -181,6 +179,16 @@ void TouchScreenCallBack(){
 	        		TouchIn(jauge_rouge);
 	        		TouchIn(jauge_verte);
 	        		TouchIn(jauge_bleu);
+	        		break;
+
+	        	case Mode_Automatique :
+	        		if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu)){
+	        			Etat_machine = Mode_Manuel;
+	        			Lancer_Mode_Manuel();
+	        			break;
+
+	        		} // end if
+
 
 
 	        }
@@ -207,9 +215,10 @@ int TouchIn(FormeTypeDef forme){
 		ret = 1;
 		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
 			// alors on manipule une jauge
-			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 			BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
-			BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 			BSP_LCD_SetFont(&Font24);
 			char buffer[10];
 			x = x - 18;
@@ -272,8 +281,8 @@ void AED(char label[10], int var, int place){
 
 void affichage_boot(){
 	BSP_LCD_Clear(LCD_COLOR_WHITE);
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font24);
 
 	BSP_LCD_DisplayStringAt(TEX/2,TEY/2, (uint8_t *) "Wesh" , LEFT_MODE);
@@ -288,10 +297,10 @@ void affichage_boot(){
 void afficher_changer_de_mode(){
 	BSP_LCD_SetFont(&Font16);
 
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 
-	BSP_LCD_DisplayStringAt(250,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
+	BSP_LCD_DisplayStringAt(BCM_pX,20, (uint8_t *) "Changer de Mode" , LEFT_MODE);
 
 	// on dessine un carré autour
 	boutton_changer_de_mode.Id = 'A';
@@ -301,8 +310,8 @@ void afficher_changer_de_mode(){
 	boutton_changer_de_mode.bordD = BCM_pX + BCM_largeur;
 
 
-	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
+	//BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	//BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
 
 
 	return;
@@ -337,8 +346,8 @@ void Lancer_Mode_Manuel(){
 
 	BSP_LCD_Clear(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font16);
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Manuel" , LEFT_MODE);
 
 
@@ -353,8 +362,8 @@ void Lancer_Mode_Automatique(){
 
 	BSP_LCD_Clear(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font16);
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_DisplayStringAt(40,20, (uint8_t *) "Mode Automatique" , LEFT_MODE);
 	afficher_changer_de_mode();
 	afficher_bandes_couleurs();
