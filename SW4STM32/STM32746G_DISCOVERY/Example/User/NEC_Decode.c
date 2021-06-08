@@ -9,28 +9,40 @@
 #include "main.h"
 #include "tim.h"
 
+extern int etatlumiere_R;
+extern int etatlumiere_G;
+extern int etatlumiere_B;
+extern int etatlumiere_W;
+
+extern int FlagTimeNEC;
+
 extern NEC nec;
 void NEC_Init(NEC* handle);
 void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
-	  if(address == 50 ){
-	    	if (cmd == 2){
-	    		NEC_Read(&nec);
+ 	  if(address == 50 ){
+	    	if (cmd == 2){ //Bouton allumage
+	    		etatlumiere_W = 100;
+                etatlumiere_R = 100;
+                etatlumiere_G = 100;
+                etatlumiere_B = 100;
+
 	    	}
-	    	else if (cmd == 46){
-	    		NEC_Read(&nec);
+	    	else if (cmd == 46){ //Bouton off
+	    		etatlumiere_W = 0;
+                etatlumiere_R = 0;
+                etatlumiere_G = 0; 
+                etatlumiere_B = 0; 
 	    	}
 	    }
-
-    NEC_Read(&nec);
-
+	  FlagTimeNEC =(int) HAL_GetTick();
 }
 
 void myNecErrorCallback() {
-     NEC_Read(&nec);
+	FlagTimeNEC = HAL_GetTick();
 }
 
 void myNecRepeatCallback() {
-    NEC_Read(&nec);
+	FlagTimeNEC = HAL_GetTick();
 }
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {

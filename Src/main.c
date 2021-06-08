@@ -33,6 +33,9 @@ uint32_t    ErrorCounter = 0;
 int etatlumiere_R;
 int etatlumiere_G;
 int etatlumiere_B;
+int etatlumiere_W;
+
+int FlagTimeNEC = -1;
 
 extern int largeur_bande;
 extern int hauteur_bande;
@@ -91,7 +94,7 @@ int main(void)
   while (1)
   {
 	  TouchScreenCallBack();
-	  RGBW_Light_Callback(map(etatlumiere_R,0,100,0,65535),map(etatlumiere_G,0,100,0,65535),map(etatlumiere_B,0,100,0,65535),map(50,0,100,0,65535));
+	  RGBW_Light_Callback(map(etatlumiere_R,0,100,0,65535),map(etatlumiere_G,0,100,0,65535),map(etatlumiere_B,0,100,0,65535),map(etatlumiere_W,0,100,0,65535));
 	  switch (Etat_machine){
 	  	  case Mode_Automatique :
 	  		  callback_mode_automatique();
@@ -99,6 +102,10 @@ int main(void)
 	  		  afficher_pourcent_remplissage();
 
 	  } // end switch
+	  if (FlagTimeNEC != -1 && (int) HAL_GetTick() - FlagTimeNEC > 100){
+		  NEC_Read(&nec);
+		  FlagTimeNEC = -1;
+	  }
   } // end while
 
 
