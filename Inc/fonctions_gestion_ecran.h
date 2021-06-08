@@ -21,5 +21,6 @@ void Changer_de_Mode();
 void afficher_boutton_FULL();
 void afficher_boutton_MID();
 void afficher_boutton_OFF();
-
+void remplir_toutes_les_jauges();
+void afficher_pourcent_remplissage();
 

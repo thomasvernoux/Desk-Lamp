@@ -140,23 +140,7 @@ void afficher_bandes_couleurs(){
 	jauge_bleu.Id = 'B';
 
 
-	// afficher les chiffres qui indiquent le remplissage des jauges
-
-
-	char buffer[10];
-	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
-	BSP_LCD_SetFont(&Font24);
-
-	itoa(etatlumiere_R,buffer,10);
-	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	itoa(etatlumiere_G,buffer,10);
-	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	itoa(etatlumiere_B,buffer,10);
-	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
+	afficher_pourcent_remplissage();// afficher les chiffres qui indiquent le remplissage des jauges
 
 
 
@@ -177,26 +161,30 @@ void TouchScreenCallBack(){
 	        x = TS_State.touchX[0];
 	        y = TS_State.touchY[0];
 
+	        // On s'occupe des jauges :
+	        switch (Etat_machine){
+				case Mode_Manuel:
+					TouchIn(jauge_rouge);
+					TouchIn(jauge_verte);
+					TouchIn(jauge_bleu);
+					break;
+
+				case Mode_Automatique :
+
+					if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu)){
+						Etat_machine = Mode_Manuel;
+						Lancer_Mode_Manuel();
+						break;
+
+					} // end if
+
+			} // end switch etat machine
+	        // On s'occupe des bouttons
+
 	        if (TouchIn(boutton_changer_de_mode)){ //on cherche a detecter si on change de mode
 	        	Changer_de_Mode();
 	        }
 
-	        switch (Etat_machine){
-	        	case Mode_Manuel:
-	        		TouchIn(jauge_rouge);
-	        		TouchIn(jauge_verte);
-	        		TouchIn(jauge_bleu);
-	        		break;
-
-	        	case Mode_Automatique :
-	        		if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu)){
-	        			Etat_machine = Mode_Manuel;
-	        			Lancer_Mode_Manuel();
-	        			break;
-
-	        		} // end if
-
-	        } // end switch etat machine
 
 	        if (TouchIn(boutton_FULL)){
 	        	Etat_machine = Mode_Manuel;
@@ -208,94 +196,26 @@ void TouchScreenCallBack(){
 	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
 	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
 
-	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-	        	char buffer[10];
-	        	itoa(etatlumiere_R,buffer,10);
-	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	itoa(etatlumiere_G,buffer,10);
-	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	itoa(etatlumiere_B,buffer,10);
-	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
+	        	afficher_pourcent_remplissage();
 	        } // end if FULL
 
 	        if (TouchIn(boutton_MID)){
 	        	Etat_machine = Mode_Manuel;
-	        	        	Lancer_Mode_Manuel();
-	        	        	etatlumiere_R = 50;
-	        	        	etatlumiere_G = 50;
-	        	        	etatlumiere_B = 50;
-	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
-	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
-	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+	        	etatlumiere_R = 50;
+	        	etatlumiere_G = 50;
+	        	etatlumiere_B = 50;
+	        	Lancer_Mode_Manuel();
+	        	afficher_pourcent_remplissage();
+	        } // end if MID
 
-	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-	        	        	char buffer[10];
-	        	        	itoa(etatlumiere_R,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_G,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_B,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-
-
-	        	        } // end if
-	        if (TouchIn(boutton_OFF)){
+ 	        if (TouchIn(boutton_OFF)){
 	        	Etat_machine = Mode_Manuel;
-	        	        	Lancer_Mode_Manuel();
-	        	        	etatlumiere_R = 50;
-	        	        	etatlumiere_G = 50;
-	        	        	etatlumiere_B = 50;
-	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
-	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
-	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
-
-	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-	        	        	char buffer[10];
-	        	        	itoa(etatlumiere_R,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_G,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_B,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-
-
-	        	        } // end if MID
-
-	        if (TouchIn(boutton_OFF)){
-	        	Etat_machine = Mode_Manuel;
-	        	        	Lancer_Mode_Manuel();
-	        	        	etatlumiere_R = 0;
-	        	        	etatlumiere_G = 0;
-	        	        	etatlumiere_B = 0;
-	        	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
-	        	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
-	        	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
-
-	        	        	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-	        	        	char buffer[10];
-	        	        	itoa(etatlumiere_R,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_G,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-	        	        	itoa(etatlumiere_B,buffer,10);
-	        	        	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
-
-
-
-	        	        } // end if OFF
-
-
+	        	etatlumiere_R = 0;
+	        	etatlumiere_G = 0;
+	        	etatlumiere_B = 0;
+	        	Lancer_Mode_Manuel();
+	        	afficher_pourcent_remplissage();
+	        	} // end if OFF
 
 
 	      } // end if
@@ -318,7 +238,7 @@ int TouchIn(FormeTypeDef forme){
 		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
 			// alors on manipule une jauge
 
-			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
 			BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 			BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
 			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
@@ -368,11 +288,12 @@ void AED(char label[10], int var, int place){
 		absysse += 20;
 	}
 
-	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetTextColor(LCD_COLOR_YELLOW);
 	BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
 	BSP_LCD_SetFont(&Font16);
 	char buffer[10];
 	itoa(var,buffer,10);
+	strcat(buffer,"/");
 	BSP_LCD_DisplayStringAt(20,absysse, (uint8_t *) label , LEFT_MODE);
 	BSP_LCD_DisplayStringAt(100,absysse, (uint8_t *) buffer , LEFT_MODE);
 
@@ -555,9 +476,33 @@ void afficher_boutton_OFF(){
 }
 
 
+void remplir_toutes_les_jauges(){
+	Remplissage_jauge_Callback(jauge_rouge, etatlumiere_R);
+	Remplissage_jauge_Callback(jauge_verte, etatlumiere_G);
+	Remplissage_jauge_Callback(jauge_bleu, etatlumiere_B);
+
+}
 
 
+void afficher_pourcent_remplissage(){
 
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetFont(&Font24);
+
+	char buffer[10];
+	itoa(etatlumiere_R,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_rouge.bordD + 10,jauge_rouge.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	itoa(etatlumiere_G,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_verte.bordD + 10,jauge_verte.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+	itoa(etatlumiere_B,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
+
+
+	return;
+}
 
 
 

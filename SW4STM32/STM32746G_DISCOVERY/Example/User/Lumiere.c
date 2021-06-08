@@ -20,6 +20,10 @@ extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
 
+// valeur moyenne
+int nombre_de_valeur_Vmoyenne = 5;
+int compteur = 0;
+int somme = 0;
 void RGBW_Light_Callback(const unsigned int R_value,const unsigned int G_value,const unsigned int B_value,const unsigned int W_value){
 
 
@@ -63,11 +67,42 @@ void W_Light_Callback(const unsigned int Intensite){
  *
  */
 void callback_mode_automatique() {
-	int valeur_lumiere = my_analogRead(&hadc3);
-	etatlumiere_R = valeur_lumiere;
-	etatlumiere_G = valeur_lumiere;
-	etatlumiere_B = valeur_lumiere;
-	AED("aa",valeur_lumiere,3);
+	long int valeur_lumiere = my_analogRead(&hadc3);
+	AED("moy", valeur_lumiere,0);
+
+	int vmax = 8000;
+	int vmin = 2000;
+
+	valeur_lumiere = vmax - vmin - valeur_lumiere;
+	valeur_lumiere = 100* valeur_lumiere / (vmax - vmin);
+
+
+
+	if (compteur < nombre_de_valeur_Vmoyenne){
+		compteur += 1;
+		somme += valeur_lumiere;
+	} // end if
+
+	else{
+		int val = somme /  nombre_de_valeur_Vmoyenne;
+
+		etatlumiere_R = val;
+		etatlumiere_G = val;
+		etatlumiere_B = val;
+		compteur = 0;
+		somme = 0;
+
+		AED("moy", val,1);
+
+	}
+
+	remplir_toutes_les_jauges();
+
+
+
+
+
+
 
 
 
