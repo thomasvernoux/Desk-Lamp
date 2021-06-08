@@ -192,10 +192,7 @@ void TouchScreenCallBack(){
 	        	etatlumiere_R = 100;
 	        	etatlumiere_G = 100;
 	        	etatlumiere_B = 100;
-	        	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
-	        	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
-	        	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
-
+	        	remplir_toutes_les_jauges();
 	        	afficher_pourcent_remplissage();
 	        } // end if FULL
 
@@ -238,16 +235,17 @@ int TouchIn(FormeTypeDef forme){
 		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
 			// alors on manipule une jauge
 
-			BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 			BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 			BSP_LCD_FillRect(forme.bordD + 10,forme.bordB - 30,52,24);
-			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 			BSP_LCD_SetFont(&Font24);
 
 			char buffer[10];
 			x = (x-18) *100 / (largeur_bande);
 			Remplissage_jauge_Callback(forme, x);
 			itoa(x,buffer,10);
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 			BSP_LCD_DisplayStringAt(forme.bordD + 10,forme.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
 			switch(forme.Id){
