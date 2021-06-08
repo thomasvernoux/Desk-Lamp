@@ -14,9 +14,10 @@
 #include "gpio.h"
 #include "tim.h"
 #include "adc.h"
+#include "dma.h"
 #include "PWM.h"
 #include "Lumiere.h"
-
+#include "NEC_Decode.h"
 #include "stm32f7xx_hal_adc.h"
 #include "my_math.h"
 #include <stdio.h>
@@ -36,6 +37,10 @@ int etatlumiere_B;
 extern int largeur_bande;
 extern int hauteur_bande;
 
+
+extern TIM_HandleTypeDef htim1;
+extern DMA_HandleTypeDef hdma_tim1_ch1;
+NEC nec;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void LCD_Init(uint8_t  lcd_status);
@@ -61,12 +66,19 @@ int main(void)
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
   MX_GPIO_Init();
   MX_ADC3_Init();
+  MX_DMA_Init();
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_TIM1_Init();
   MX_TIM12_Init();
 
+
+
   LCD_Init(lcd_status);
+
+  NEC_Init(&nec);
+
+  NEC_Read(&nec);
 
   set_variables();
 
