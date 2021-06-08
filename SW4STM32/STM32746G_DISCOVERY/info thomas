@@ -4,6 +4,9 @@ enlever le cadre rouge autour de "changer de mode"
 configurer le DAC
 
 
+// Pins
+pin photoresistance : A1
+
 
 
 
