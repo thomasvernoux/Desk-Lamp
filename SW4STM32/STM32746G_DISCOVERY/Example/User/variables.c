@@ -25,6 +25,9 @@ int pYbV;
 int pXbB;
 int pYbB;
 
+int pXbW; // bande blanche
+int pYbW;
+
 int largeur_bande;
 int hauteur_bande = 40; // hauteur de la bande
 
@@ -47,6 +50,7 @@ int x,y; // variables contenant la position du dernier touch sur l'ecran tactile
 int etatlumiere_R = 100/2;
 int etatlumiere_G = 100/2;
 int etatlumiere_B = 100/2;
+int etatlumiere_W = 100/2;
 
 
 
@@ -63,13 +67,16 @@ void set_variables(){
 	largeur_bande = TEX - marge_droite - marge_gauche;
 	
 	pXbR = 20; // position X bande rouge
-	pYbR = TEY/4 * 1 - hauteur_bande/2 + marge_haut; // position Y bande rouge
+	pYbR = TEY/5 * 1 - hauteur_bande/2 + marge_haut; // position Y bande rouge
 
 	pXbV = 20;
-	pYbV = TEY/4 * 2 - hauteur_bande/2 + marge_haut;
+	pYbV = TEY/5 * 2 - hauteur_bande/2 + marge_haut;
 
 	pXbB = 20;
-	pYbB = TEY/4 * 3 - hauteur_bande/2 + marge_haut;
+	pYbB = TEY/5 * 3 - hauteur_bande/2 + marge_haut;
+
+	pXbW = 20;
+	pYbW = TEY/5 * 4 - hauteur_bande/2 + marge_haut;
 
 
 }

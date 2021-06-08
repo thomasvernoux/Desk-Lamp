@@ -53,6 +53,9 @@ extern int pYbV;
 extern int pXbB;
 extern int pYbB;
 
+extern int pXbW;
+extern int pYbW;
+
 extern int hauteur_bande; // hauteur de la bande
 extern int largeur_bande;
 
@@ -63,6 +66,7 @@ int curseur_jauge_bleue;
 extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
+extern int etatlumiere_W;
 
 // noutton changer de mode :
 extern int BCM_pX; // position X
@@ -76,6 +80,7 @@ extern int BCM_hauteur; // hauteur
 FormeTypeDef jauge_rouge;
 FormeTypeDef jauge_verte;
 FormeTypeDef jauge_bleu;
+FormeTypeDef jauge_blanche;
 // bouttons
 FormeTypeDef boutton_changer_de_mode;
 FormeTypeDef boutton_OFF;
@@ -100,6 +105,8 @@ void Remplissage_jauge_Callback(FormeTypeDef forme, int Intensite){
 		BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
 	else if (forme.Id == 'B')
 		BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
+	else if (forme.Id == 'W')
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
 	BSP_LCD_FillRect(forme.bordG+1,forme.bordH+1,((forme.bordD-forme.bordG)-1)*Intensite/100, (forme.bordB-forme.bordH)-1);
 }
@@ -139,6 +146,15 @@ void afficher_bandes_couleurs(){
 	jauge_bleu.bordD = pXbB + largeur_bande;
 	jauge_bleu.Id = 'B';
 
+	// Bande blanche
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	BSP_LCD_DrawRect(pXbW, pYbW,largeur_bande, hauteur_bande);
+	jauge_blanche.bordH = pYbW;
+	jauge_blanche.bordB = pYbW + hauteur_bande;
+	jauge_blanche.bordG = pXbW;
+	jauge_blanche.bordD = pXbW + largeur_bande;
+	jauge_blanche.Id = 'W';
+
 
 	afficher_pourcent_remplissage();// afficher les chiffres qui indiquent le remplissage des jauges
 
@@ -167,6 +183,7 @@ void TouchScreenCallBack(){
 					TouchIn(jauge_rouge);
 					TouchIn(jauge_verte);
 					TouchIn(jauge_bleu);
+					TouchIn(jauge_blanche);
 					break;
 
 				case Mode_Automatique :
@@ -192,6 +209,7 @@ void TouchScreenCallBack(){
 	        	etatlumiere_R = 100;
 	        	etatlumiere_G = 100;
 	        	etatlumiere_B = 100;
+	        	etatlumiere_W = 100;
 	        	remplir_toutes_les_jauges();
 	        	afficher_pourcent_remplissage();
 	        } // end if FULL
@@ -201,6 +219,7 @@ void TouchScreenCallBack(){
 	        	etatlumiere_R = 50;
 	        	etatlumiere_G = 50;
 	        	etatlumiere_B = 50;
+	        	etatlumiere_W = 50;
 	        	Lancer_Mode_Manuel();
 	        	afficher_pourcent_remplissage();
 	        } // end if MID
@@ -210,6 +229,7 @@ void TouchScreenCallBack(){
 	        	etatlumiere_R = 0;
 	        	etatlumiere_G = 0;
 	        	etatlumiere_B = 0;
+	        	etatlumiere_W = 0;
 	        	Lancer_Mode_Manuel();
 	        	afficher_pourcent_remplissage();
 	        	} // end if OFF
@@ -232,7 +252,7 @@ int TouchIn(FormeTypeDef forme){
 
 	if (x < forme.bordD && x > forme.bordG && y > forme.bordH && y < forme.bordB){
 		ret = 1;
-		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B'){
+		if (forme.Id == 'R' || forme.Id == 'V' || forme.Id == 'B' || forme.Id == 'W'){
 			// alors on manipule une jauge
 
 			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
@@ -258,19 +278,15 @@ int TouchIn(FormeTypeDef forme){
 					case 'B':
 						etatlumiere_B = x;
 						break;
+					case 'W':
+						etatlumiere_W = x;
+						break;
 			} // end switch
 
 		} // end if
 
 
-
-
-
 	}// end if
-
-
-
-
 
 	return ret;
 
@@ -309,7 +325,7 @@ void affichage_boot(){
 	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font24);
 
-	BSP_LCD_DisplayStringAt(TEX/2,TEY/2, (uint8_t *) "Wesh" , LEFT_MODE);
+	BSP_LCD_DisplayStringAt(TEX/4,TEY/2, (uint8_t *) "<3 We love CPE <3" , LEFT_MODE);
 
 	HAL_Delay(1000);
 	Etat_machine = Mode_Manuel;
@@ -378,9 +394,7 @@ void Lancer_Mode_Manuel(){
 	afficher_bandes_couleurs();
 	afficher_changer_de_mode();
 
-	Remplissage_jauge_Callback(jauge_rouge,etatlumiere_R);
-	Remplissage_jauge_Callback(jauge_bleu,etatlumiere_B);
-	Remplissage_jauge_Callback(jauge_verte,etatlumiere_G);
+	remplir_toutes_les_jauges();
 
 
 	// affichage des bouttons
@@ -478,6 +492,7 @@ void remplir_toutes_les_jauges(){
 	Remplissage_jauge_Callback(jauge_rouge, etatlumiere_R);
 	Remplissage_jauge_Callback(jauge_verte, etatlumiere_G);
 	Remplissage_jauge_Callback(jauge_bleu, etatlumiere_B);
+	Remplissage_jauge_Callback(jauge_blanche, etatlumiere_W);
 
 }
 
@@ -498,6 +513,8 @@ void afficher_pourcent_remplissage(){
 	itoa(etatlumiere_B,buffer,10);
 	BSP_LCD_DisplayStringAt(jauge_bleu.bordD + 10,jauge_bleu.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
+	itoa(etatlumiere_W,buffer,10);
+	BSP_LCD_DisplayStringAt(jauge_blanche.bordD + 10,jauge_blanche.bordB - 30, (uint8_t *) buffer , LEFT_MODE);
 
 	return;
 }
