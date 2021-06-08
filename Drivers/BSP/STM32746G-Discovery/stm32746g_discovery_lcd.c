@@ -891,17 +891,12 @@ void BSP_LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 void BSP_LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
 {
   /* Draw horizontal lines */
-  HAL_Delay(1);
   BSP_LCD_DrawHLine(Xpos, Ypos, Width);
-  HAL_Delay(1);
   BSP_LCD_DrawHLine(Xpos, (Ypos+ Height), Width);
-  HAL_Delay(1);
   
   /* Draw vertical lines */
   BSP_LCD_DrawVLine(Xpos, Ypos, Height);
-  HAL_Delay(1);
   BSP_LCD_DrawVLine((Xpos + Width), Ypos, Height);
-  HAL_Delay(1);
 }
 
 /**

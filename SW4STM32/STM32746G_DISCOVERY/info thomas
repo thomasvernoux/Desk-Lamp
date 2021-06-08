@@ -6,6 +6,7 @@ configurer le DAC
 
 // Pins
 pin photoresistance : A1
+pin led rouge : D3
 
 
 

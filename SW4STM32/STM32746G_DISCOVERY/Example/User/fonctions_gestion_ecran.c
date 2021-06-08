@@ -59,10 +59,6 @@ extern int pYbW;
 extern int hauteur_bande; // hauteur de la bande
 extern int largeur_bande;
 
-int curseur_jauge_rouge;
-int surseur_jauge_verte;
-int curseur_jauge_bleue;
-
 extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
@@ -188,7 +184,7 @@ void TouchScreenCallBack(){
 
 				case Mode_Automatique :
 
-					if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu)){
+					if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu) || TouchIn(jauge_blanche)){
 						Etat_machine = Mode_Manuel;
 						Lancer_Mode_Manuel();
 						break;
@@ -351,7 +347,7 @@ void afficher_changer_de_mode(){
 
 
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
+	//BSP_LCD_DrawRect(BCM_pX, BCM_pY,BCM_largeur, BCM_hauteur);
 
 
 	return;
@@ -439,7 +435,7 @@ void afficher_boutton_FULL(){
 	boutton_FULL.bordG = pXbR + largeur_bande + 80;
 	boutton_FULL.bordD = pXbR + largeur_bande + 80 + largeur_boutton_FMO;
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_LCD_DrawRect(boutton_FULL.bordG , boutton_FULL.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
+	//BSP_LCD_DrawRect(boutton_FULL.bordG , boutton_FULL.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
 
 
 	return;
@@ -460,7 +456,7 @@ void afficher_boutton_MID(){
 	boutton_MID.bordG = pXbV + largeur_bande + 80;
 	boutton_MID.bordD = pXbV + largeur_bande + 80 + largeur_boutton_FMO;
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_LCD_DrawRect(boutton_MID.bordG , boutton_MID.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
+	//BSP_LCD_DrawRect(boutton_MID.bordG , boutton_MID.bordH, largeur_boutton_FMO, hauteur_boutton_FMO);
 
 
 		return;
@@ -481,7 +477,7 @@ void afficher_boutton_OFF(){
 	boutton_OFF.bordG = pXbB + largeur_bande + 80;
 	boutton_OFF.bordD = pXbB + largeur_bande + 80 + largeur_boutton_FMO;
 	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_LCD_DrawRect(boutton_OFF.bordG, boutton_OFF.bordH ,largeur_boutton_FMO, hauteur_boutton_FMO);
+	//BSP_LCD_DrawRect(boutton_OFF.bordG, boutton_OFF.bordH ,largeur_boutton_FMO, hauteur_boutton_FMO);
 
 
 	return;

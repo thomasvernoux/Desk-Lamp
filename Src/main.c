@@ -95,6 +95,8 @@ int main(void)
 	  switch (Etat_machine){
 	  	  case Mode_Automatique :
 	  		  callback_mode_automatique();
+	  		  remplir_toutes_les_jauges();
+	  		  afficher_pourcent_remplissage();
 
 	  } // end switch
   } // end while

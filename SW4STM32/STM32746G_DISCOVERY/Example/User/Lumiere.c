@@ -19,11 +19,12 @@ unsigned int W_old_value = 0;
 extern int etatlumiere_R;
 extern int etatlumiere_G;
 extern int etatlumiere_B;
+extern int etatlumiere_W;
 
 // valeur moyenne
 int nombre_de_valeur_Vmoyenne = 5;
 int compteur = 0;
-int somme = 0;
+long int somme = 0;
 void RGBW_Light_Callback(const unsigned int R_value,const unsigned int G_value,const unsigned int B_value,const unsigned int W_value){
 
 
@@ -68,13 +69,13 @@ void W_Light_Callback(const unsigned int Intensite){
  */
 void callback_mode_automatique() {
 	long int valeur_lumiere = my_analogRead(&hadc3);
-	AED("moy", valeur_lumiere,0);
+	//AED("val inst", valeur_lumiere,0);
 
-	int vmax = 8000;
-	int vmin = 2000;
+	int vmax = 2500;
+	int vmin = 400;
 
-	valeur_lumiere = vmax - vmin - valeur_lumiere;
 	valeur_lumiere = 100* valeur_lumiere / (vmax - vmin);
+	//AED("val inst", valeur_lumiere,1);
 
 
 
@@ -86,14 +87,20 @@ void callback_mode_automatique() {
 	else{
 		int val = somme /  nombre_de_valeur_Vmoyenne;
 
-		etatlumiere_R = val;
-		etatlumiere_G = val;
-		etatlumiere_B = val;
+		if (val <= 100 && val >= 0){
+
+			etatlumiere_R = val;
+			etatlumiere_G = val;
+			etatlumiere_B = val;
+			etatlumiere_W = val;
+
+		}
+		else if (val > 100)
+			val = 100;
+		else if (val < 0)
+			val = 0;
 		compteur = 0;
 		somme = 0;
-
-		AED("moy", val,1);
-
 	}
 
 	remplir_toutes_les_jauges();
