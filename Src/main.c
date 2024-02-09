@@ -9,7 +9,7 @@
 #include "main.h"
 #include "stlogo.h"
 #include "variables.h"
-#include "fonctions_gestion_ecran.h"
+#include "fonctions_gestion_ecran.h" // functions to controll the screen
 #include "structures.h"
 #include "gpio.h"
 #include "tim.h"
@@ -25,32 +25,36 @@
 
 
 /* Global extern variables ---------------------------------------------------*/
-uint8_t NbLoop = 1;
+uint8_t NbLoop = 1;  // number of loops
 #ifndef USE_FULL_ASSERT
 uint32_t    ErrorCounter = 0;
 #endif
 
-int etatlumiere_R;
-int etatlumiere_G;
-int etatlumiere_B;
-int etatlumiere_W;
 
-int FlagTimeNEC = -1;
+// state of the light
+int etatlumiere_R;   // Define the red light state variable
+int etatlumiere_G;   // Define the green light state variable
+int etatlumiere_B;   // Define the blue light state variable
+int etatlumiere_W;   // Define the white light state variable
 
-extern int largeur_bande;
-extern int hauteur_bande;
+int FlagTimeNEC = -1;  // infrared flag
+
+extern int largeur_bande;   // Declare external variable for band width
+extern int hauteur_bande;   // Declare external variable for band height
 
 
-extern TIM_HandleTypeDef htim1;
-extern DMA_HandleTypeDef hdma_tim1_ch1;
-NEC nec;
+extern TIM_HandleTypeDef htim1;  // Defin the timer 1
+extern DMA_HandleTypeDef hdma_tim1_ch1;  // Declare external variable for DMA associated with Timer 1
+NEC nec;  // Declare NEC structure
+
+
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void LCD_Init(uint8_t  lcd_status);
 static void CPU_CACHE_Enable(void);
 
 STATE_MachineTypeDef Etat_machine = Mode_Automatique;
-
 
 /**
   * @brief  Main program
@@ -59,11 +63,11 @@ STATE_MachineTypeDef Etat_machine = Mode_Automatique;
   */
 int main(void)
 {
-  uint8_t  lcd_status = LCD_OK;
+  uint8_t  lcd_status = LCD_OK;  // Status of LCD screen
 
-  CPU_CACHE_Enable();
-  HAL_Init();
-  SystemClock_Config();
+  CPU_CACHE_Enable();   
+  HAL_Init();                   // Initialise all HAL peripherals
+  SystemClock_Config();         // Configuration of systel clock
 
   BSP_LED_Init(LED1);
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
@@ -93,10 +97,12 @@ int main(void)
 
   while (1)
   {
-	  TouchScreenCallBack();
+    // Main loop
+
+	  TouchScreenCallBack();  // Callback for screen input (when user touch the screen)
 	  RGBW_Light_Callback(map(etatlumiere_R,0,100,0,65535),map(etatlumiere_G,0,100,0,65535),map(etatlumiere_B,0,100,0,65535),map(etatlumiere_W,0,100,0,65535));
 	  switch (Etat_machine){
-	  	  case Mode_Automatique :
+	  	  case Mode_Automatique :   // Automatic mode
 	  		  callback_mode_automatique();
 	  		  remplir_toutes_les_jauges();
 	  		  afficher_pourcent_remplissage();

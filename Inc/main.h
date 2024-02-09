@@ -425,7 +425,7 @@ typedef enum {
   AUDIO_ERROR_EOF,
 }AUDIO_ErrorTypeDef;
 
-typedef enum {
+typedef enum {   // define the mode of the lamp
   Mode_Manuel,
   Mode_Automatique,
   BOOT,
