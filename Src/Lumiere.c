@@ -117,7 +117,7 @@ void callback_mode_automatique() {
 	else{
 		int val = somme /  nombre_de_valeur_Vmoyenne; // mean calculation
 
-		if (val <= 100 && val >= 0){
+		if (val <= 100 && val >= 0){  // Normal state
 
 			etatlumiere_R = val;
 			etatlumiere_G = val;
@@ -126,14 +126,16 @@ void callback_mode_automatique() {
 
 		}
 		else if (val > 100)
+			// Light is more intensife than the maximum
 			val = 100;
 		else if (val < 0)
+			// Light is less intensive than the minimum
 			val = 0;
-		compteur = 0;
-		somme = 0;
+		compteur = 0;  // reset the counter (lowpass filter)
+		somme = 0;     // reset the sum (lowpass filter)
 	}
 
-	remplir_toutes_les_jauges();
+	remplir_toutes_les_jauges();  // Update all stripes
 
 
 
