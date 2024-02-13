@@ -1,12 +1,13 @@
 /*
  * fonctions_gestion_ecran.c
+ * This file contain all function linked to the screen
  *
  *  Created on: 2 juin 2021
- *      Author: thoma
+ *      Author: thomas
  */
 
 #include "fonctions_gestion_ecran.h"
-#include "main.h".0
+#include "main.h"
 
 #include "stm32746g_discovery_ts.h"
 #include "variables.h"
@@ -28,41 +29,34 @@ static TS_StateTypeDef  TS_State;
 
 
 
-extern int marge_haut;
-extern int marge_droite;
-extern int marge_gauche;
+extern int marge_haut;    // Top space
+extern int marge_droite;  // right space
+extern int marge_gauche;  // Left space
 
-extern int TEX;
-extern int TEY;
-
-
-
-extern int taille_ecran_X;
-extern int taille_ecran_Y;
-extern int x, y;
+extern int TEX;   // Screen size X
+extern int TEY;   // SCreen size Y
 
 
-// ecran 3 bandes
+// Stripes positions
+extern int pXbR; // Red stripe X position
+extern int pYbR; // Red stripe Y position
 
-extern int pXbR; // position X bande rouge
-extern int pYbR; // position Y bande rouge
+extern int pXbV; // green stripe X position
+extern int pYbV; // green stripe Y position
 
-extern int pXbV;
-extern int pYbV;
+extern int pXbB; // blue stripe X position
+extern int pYbB; // blue stripe Y position
 
-extern int pXbB;
-extern int pYbB;
+extern int pXbW; // White stripe X position
+extern int pYbW; // White stripe Y position
 
-extern int pXbW;
-extern int pYbW;
+extern int hauteur_bande; // hight of the stripe
+extern int largeur_bande; // width pf the stripe
 
-extern int hauteur_bande; // hauteur de la bande
-extern int largeur_bande;
-
-extern int etatlumiere_R;
-extern int etatlumiere_G;
-extern int etatlumiere_B;
-extern int etatlumiere_W;
+extern int etatlumiere_R; // state light Red
+extern int etatlumiere_G; // state light green
+extern int etatlumiere_B; // state light blue
+extern int etatlumiere_W; // state light white
 
 // noutton changer de mode :
 extern int BCM_pX; // position X
@@ -73,15 +67,15 @@ extern int BCM_hauteur; // hauteur
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
-FormeTypeDef jauge_rouge;
-FormeTypeDef jauge_verte;
-FormeTypeDef jauge_bleu;
-FormeTypeDef jauge_blanche;
+FormeTypeDef jauge_rouge; // red stripe object
+FormeTypeDef jauge_verte; // green stripe object
+FormeTypeDef jauge_bleu; // blue stripe object
+FormeTypeDef jauge_blanche; // white stripe object
 // bouttons
-FormeTypeDef boutton_changer_de_mode;
-FormeTypeDef boutton_OFF;
-FormeTypeDef boutton_FULL;
-FormeTypeDef boutton_MID;
+FormeTypeDef boutton_changer_de_mode;  // change mode button
+FormeTypeDef boutton_OFF;              // Off button
+FormeTypeDef boutton_FULL;             // Full button
+FormeTypeDef boutton_MID;              // Mid button
 
 /* Variables de la machine d'etat ---------------------------------------------*/
 extern STATE_MachineTypeDef Etat_machine;
