@@ -9,14 +9,14 @@
 #include "main.h"
 #include "stlogo.h"
 #include "variables.h"
-#include "fonctions_gestion_ecran.h" // functions to controll the screen
+#include "fonctions_gestion_ecran.h" // functions to control the screen
 #include "structures.h"
 #include "gpio.h"
 #include "tim.h"
 #include "adc.h"
 #include "dma.h"
 #include "PWM.h"
-#include "Lumiere.h"
+#include "Lumiere.h"      // functions linked to LED controll
 #include "NEC_Decode.h"
 #include "stm32f7xx_hal_adc.h"
 #include "my_math.h"
@@ -45,16 +45,16 @@ extern int hauteur_bande;   // Declare external variable for band height
 
 extern TIM_HandleTypeDef htim1;  // Defin the timer 1
 extern DMA_HandleTypeDef hdma_tim1_ch1;  // Declare external variable for DMA associated with Timer 1
-NEC nec;  // Declare NEC structure
+NEC nec;  // Declare NEC structure (infrared communication)
 
 
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-static void LCD_Init(uint8_t  lcd_status);
+static void LCD_Init(uint8_t  lcd_status);  // LCD sreen initialisation
 static void CPU_CACHE_Enable(void);
 
-STATE_MachineTypeDef Etat_machine = Mode_Automatique;
+STATE_MachineTypeDef Etat_machine = Mode_Automatique;  // State of the light
 
 /**
   * @brief  Main program
@@ -67,31 +67,29 @@ int main(void)
 
   CPU_CACHE_Enable();   
   HAL_Init();                   // Initialise all HAL peripherals
-  SystemClock_Config();         // Configuration of systel clock
+  SystemClock_Config();         // Configuration of system clock
 
-  BSP_LED_Init(LED1);
-  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
   MX_GPIO_Init();
   MX_ADC3_Init();
   MX_DMA_Init();
-  MX_TIM3_Init();
+  MX_TIM3_Init();  // Timers initialisation
   MX_TIM2_Init();
   MX_TIM1_Init();
   MX_TIM12_Init();
 
 
 
-  LCD_Init(lcd_status);
+  LCD_Init(lcd_status);  // Initialisation of LCD screen
 
   NEC_Init(&nec);
 
   NEC_Read(&nec);
 
-  set_variables();
+  set_variables();        // Set variables
 
 
-  affichage_boot();
-  Lancer_Mode_Manuel();
+  affichage_boot();       // Display boot message on the screen
+  Lancer_Mode_Manuel();   // Start manual mode
 
 
 

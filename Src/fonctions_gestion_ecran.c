@@ -78,7 +78,7 @@ FormeTypeDef boutton_FULL;             // Full button
 FormeTypeDef boutton_MID;              // Mid button
 
 /* Variables de la machine d'etat ---------------------------------------------*/
-extern STATE_MachineTypeDef Etat_machine;
+extern STATE_MachineTypeDef Etat_machine;  // State of the machine
 
 
 // variables bouttons
@@ -315,7 +315,7 @@ void affichage_boot(){
 	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetFont(&Font24);
 
-	BSP_LCD_DisplayStringAt(TEX/4,TEY/2, (uint8_t *) "<3 We love CPE <3" , LEFT_MODE);
+	BSP_LCD_DisplayStringAt(TEX/4,TEY/2, (uint8_t *) "Hello" , LEFT_MODE);
 
 	HAL_Delay(1000);
 	Etat_machine = Mode_Manuel;
