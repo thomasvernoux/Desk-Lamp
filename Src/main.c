@@ -101,15 +101,16 @@ int main(void)
 	  RGBW_Light_Callback(map(etatlumiere_R,0,100,0,65535),map(etatlumiere_G,0,100,0,65535),map(etatlumiere_B,0,100,0,65535),map(etatlumiere_W,0,100,0,65535));
 	  switch (Etat_machine){
 	  	  case Mode_Automatique :   // Automatic mode
-	  		  callback_mode_automatique();
-	  		  remplir_toutes_les_jauges();
-	  		  afficher_pourcent_remplissage();
+	  		  callback_mode_automatique();  // Callback for automatic mode
+	  		  remplir_toutes_les_jauges();  // Fill the stripes depending on the LED intensity
+	  		  afficher_pourcent_remplissage();  // Print % filling
+
+	  	  case Mode_Manuel :       // Manual mode
+	  		TouchScreenCallBack();  // Callback for manual mode
+	  		RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
 	  } // end switch
-	  if (FlagTimeNEC != -1 && (int) HAL_GetTick() - FlagTimeNEC > 100){
-		  NEC_Read(&nec);
-		  FlagTimeNEC = -1;
-	  }
+
   } // end while
 
 
