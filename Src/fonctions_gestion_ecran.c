@@ -177,26 +177,13 @@ void TouchScreenCallBack(){
 	        y = TS_State.touchY[0];
 
 
-	        switch (Etat_machine){
-				case Mode_Manuel:  // the light is in manual mode
-					// See if a color gauge has been touched, and to the action if necessary
-					TouchIn(jauge_rouge);
-					TouchIn(jauge_verte);
-					TouchIn(jauge_bleu);
-					TouchIn(jauge_blanche);
-					break;
 
-				case Mode_Automatique :
+			// See if a color gauge has been touched, and to the action if necessary
+			TouchIn(jauge_rouge);
+			TouchIn(jauge_verte);
+			TouchIn(jauge_bleu);
+			TouchIn(jauge_blanche);
 
-					if (TouchIn(jauge_rouge) || TouchIn(jauge_verte) || TouchIn(jauge_bleu) || TouchIn(jauge_blanche)){
-						// The light switch to manual mode
-						Etat_machine = Mode_Manuel;
-						Lancer_Mode_Manuel();  // start manual mode
-						break;
-
-					} // end if
-
-			} // end switch etat machine
 
 
 	        // Test if the touch was on a button

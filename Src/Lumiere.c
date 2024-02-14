@@ -94,11 +94,11 @@ void W_Light_Callback(const unsigned int Intensite){
  *
  */
 void callback_mode_automatique() {
-	long int valeur_lumiere = my_analogRead(&hadc3); // Photoresistor value read
+	long int valeur_lumiere = my_analogRead(&hadc3); // Photodiode value read
 
 	// Photodiod calibration value
-	int vmax = 2500; // Max value measured for the photoresistor
-	int vmin = 400;  // Min value measured for the photoresistor
+	int vmax = 2500; // Max value measured for the photodiode
+	int vmin = 400;  // Min value measured for the photodiode
 
 	valeur_lumiere = 100* valeur_lumiere / (vmax - vmin);  // Light value %
 
