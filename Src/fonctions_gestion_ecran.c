@@ -3,7 +3,7 @@
  * This file contain all function linked to the screen
  *
  *  Created on: 2 juin 2021
- *      Author: thomas
+ *      Author: Thomas Vernoux
  */
 
 #include "fonctions_gestion_ecran.h"
@@ -67,10 +67,10 @@ extern int BCM_hauteur; // hauteur
 
 /* Création des differents objets --------------------------------------------*/
 // Ecran 3 bandes
-FormeTypeDef jauge_rouge; // red stripe object
-FormeTypeDef jauge_verte; // green stripe object
-FormeTypeDef jauge_bleu; // blue stripe object
-FormeTypeDef jauge_blanche; // white stripe object
+FormeTypeDef jauge_rouge;              // red stripe object
+FormeTypeDef jauge_verte;              // green stripe object
+FormeTypeDef jauge_bleu;               // blue stripe object
+FormeTypeDef jauge_blanche;            // white stripe object
 // bouttons
 FormeTypeDef boutton_changer_de_mode;  // change mode button
 FormeTypeDef boutton_OFF;              // Off button

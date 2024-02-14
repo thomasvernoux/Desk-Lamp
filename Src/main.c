@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    BSP/Src/main.c
-  * @author  Thomas VERNOUX - Florian DEVIN
+  * @author  Thomas VERNOUX
   * @brief   Projet de Majeur - Electronique
   */
 
@@ -81,9 +81,6 @@ int main(void)
 
   LCD_Init(lcd_status);  // Initialisation of LCD screen
 
-  NEC_Init(&nec);
-
-  NEC_Read(&nec);
 
   set_variables();        // Set variables
 
@@ -97,17 +94,17 @@ int main(void)
   {
     // Main loop
 
-	  TouchScreenCallBack();  // Callback for screen input (when user touch the screen)
-	  RGBW_Light_Callback(map(etatlumiere_R,0,100,0,65535),map(etatlumiere_G,0,100,0,65535),map(etatlumiere_B,0,100,0,65535),map(etatlumiere_W,0,100,0,65535));
 	  switch (Etat_machine){
-	  	  case Mode_Automatique :   // Automatic mode
-	  		  callback_mode_automatique();  // Callback for automatic mode
-	  		  remplir_toutes_les_jauges();  // Fill the stripes depending on the LED intensity
-	  		  afficher_pourcent_remplissage();  // Print % filling
+	  	  case Mode_Automatique :              // Automatic mode
+	  		  callback_mode_automatique();     // Callback for automatic mode
+	  		  RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
-	  	  case Mode_Manuel :       // Manual mode
-	  		TouchScreenCallBack();  // Callback for manual mode
-	  		RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
+	  		  remplir_toutes_les_jauges();     // Fill the stripes depending on the LED intensity
+	  		  afficher_pourcent_remplissage(); // Print % filling
+
+	  	  case Mode_Manuel :                   // Manual mode
+	  		  TouchScreenCallBack();           // Callback for manual mode
+	  		  RGBW_Light_Callback(map(etatlumiere_R,0,largeur_bande,0,65535),map(etatlumiere_G,0,largeur_bande,0,65535),map(etatlumiere_B,0,largeur_bande,0,65535),map(50,0,512,0,65535));
 
 	  } // end switch
 
@@ -116,11 +113,12 @@ int main(void)
 
 
 
-
-
-
-
 }
+
+
+
+
+
 
 /**
   * @brief  System Clock Configuration

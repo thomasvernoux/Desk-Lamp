@@ -2,7 +2,7 @@
  * Lumiere.c
  *
  *  Created on: 3 juin 2021
- *      Author: florian
+ *      Author: Thomas Vernoux
  *      Fonctions de callback allumage des leds
  *      Callbacks functions for LED
  */
@@ -90,19 +90,15 @@ void W_Light_Callback(const unsigned int Intensite){
 
 
 /*
- * @brief Cette fonction gere la reception
- * du signal de la photorésistance et écrit sur les
- * sorties PWM lors du mode automatique
- *
- * @brief This function is the callback for automatic mode. Th eled intensity depend on the photodiode input.
+ * @brief Automatic callback : write light value depending on the photoresistor
  *
  */
 void callback_mode_automatique() {
-	long int valeur_lumiere = my_analogRead(&hadc3); // Photodiode value read
+	long int valeur_lumiere = my_analogRead(&hadc3); // Photoresistor value read
 
 	// Photodiod calibration value
-	int vmax = 2500; // Max value measured for the photodiode
-	int vmin = 400; // Min value measured for the photodiode
+	int vmax = 2500; // Max value measured for the photoresistor
+	int vmin = 400;  // Min value measured for the photoresistor
 
 	valeur_lumiere = 100* valeur_lumiere / (vmax - vmin);  // Light value %
 
